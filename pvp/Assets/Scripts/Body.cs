@@ -33,6 +33,11 @@ public class Body : MonoBehaviour {
 	}
 	
 	
+	/* Updates the velocity according to all other bodies.
+	 * 
+	 * Note: The only "output" of the method is to re-assign
+	 * the value of 'mVelocity'. 
+	 */
 	protected virtual void UpdateVelocity() {
 		
 	}
