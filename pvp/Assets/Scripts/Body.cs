@@ -19,11 +19,11 @@ public class Body : MonoBehaviour {
 		set { mMass = value; }
 	}
 	
-	void Start () {
+	protected virtual void Start () {
 		sBodies.Add (this);	
 	}
 	
-	void Update () {
+	protected virtual void Update () {
 		UpdateVelocity();
 		AddVelocityToPosition();
 	}

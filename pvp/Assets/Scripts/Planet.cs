@@ -10,6 +10,12 @@ public class Planet : Body {
 	
 	public float mTimer = 0f;
 	
+	protected override void Start() {
+		base.Start();
+		
+		Mass = 10f;	
+	}
+	
 	protected override void UpdateVelocity() {
 		mTimer += Time.deltaTime;
 		
