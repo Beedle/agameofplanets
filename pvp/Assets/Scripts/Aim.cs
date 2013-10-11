@@ -2,16 +2,34 @@
 using System.Collections;
 
 public class Aim : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
+	protected KeyCode mLeftKey;
+	public KeyCode LeftKey {
+		get { return mLeftKey; }
+		set { mLeftKey = value; }
 	}
 	
-	// Update is called once per frame
+	protected KeyCode mRightKey;
+	public KeyCode RightKey {
+		get { return mRightKey; }
+		set { mRightKey = value; }
+	}
+	
+	void Start () {
+		
+	}
+	
 	void Update () {
+		if (Input.GetKey(mLeftKey)) {
+			RotateAlongZ(-90f);
+		} else if (Input.GetKey(mRightKey)) {
+			RotateAlongZ(90f);
+		}
+	}
+	
+	
+	private void RotateAlongZ(float degree) {
 		Vector3 euler = transform.rotation.eulerAngles;
-		euler.z += 1f;
+		euler.z += degree * Time.deltaTime;
 		transform.rotation = Quaternion.Euler(euler);
 	}
 }

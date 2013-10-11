@@ -2,8 +2,17 @@
 using System.Collections;
 
 public class Planet : Body {
+	public enum PlayerSide {
+		PLAYER_UNDEFINED,
+		PLAYER_LEFT,
+		PLAYER_RIGHT,
+	}
+	
 	public Body mOrbitBody;
 	public float mOrbitDistance;
+	
+	public PlayerSide mPlayerSide = PlayerSide.PLAYER_UNDEFINED;
+	public Aim mAim;
 	
 	public float mOrbitXFactor = 1f;
 	public float mOrbitYFactor = 1f;
@@ -14,6 +23,14 @@ public class Planet : Body {
 		base.Start();
 		
 		Mass = 10f;	
+		
+		if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
+			mAim.LeftKey = KeyCode.Q;
+			mAim.RightKey = KeyCode.W;
+		} else if (mPlayerSide == PlayerSide.PLAYER_RIGHT) {
+			mAim.LeftKey = KeyCode.O;
+			mAim.RightKey = KeyCode.P;
+		}
 	}
 	
 	protected override void UpdateVelocity() {
