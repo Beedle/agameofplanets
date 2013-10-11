@@ -36,7 +36,8 @@ public class Body : MonoBehaviour {
 	/* Updates the velocity according to all other bodies.
 	 * 
 	 * Note: The only "output" of the method is to re-assign
-	 * the value of 'mVelocity'. 
+	 * the value of 'mVelocity'. mVelocity should not be affected
+	 * by the delta-time.
 	 */
 	protected virtual void UpdateVelocity() {
 		
