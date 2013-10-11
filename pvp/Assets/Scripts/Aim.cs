@@ -22,7 +22,7 @@ public class Aim : MonoBehaviour {
 		set { mFireKey = value; }
 	}
 	
-	private float mRotZ;
+	private float mRotZ = 90f;
 	
 	void Start () {
 		
@@ -53,9 +53,11 @@ public class Aim : MonoBehaviour {
 		
 		Rocket rocket = Instantiate(pfRocket, position, rotation) as Rocket;
 		
-		Vector2 velocity = new Vector2();
-		velocity.x = Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 3f;
-		velocity.y = Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 3f;
+		Body body = transform.parent.gameObject.GetComponent<Planet>();
+		Vector2 velocity = body.Velocity;
+		
+		velocity.x = Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 200f;
+		velocity.y = Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 200f;
 		rocket.SetInitialVelocity(velocity);
 	}
 }
