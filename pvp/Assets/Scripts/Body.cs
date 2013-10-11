@@ -41,15 +41,18 @@ public class Body : MonoBehaviour {
 		foreach (Body tempBody in sBodies) {
 			if (tempBody != this) {
 				
-				//m1*m2/dist*dist
-				float massProduct = tempBody.Mass * mMass;
-				Vector3 distance = tempBody.transform.position - transform.position;
-				acceleration.x += Time.deltaTime * massProduct / (distance.x * distance.x) ;
-				acceleration.y += Time.deltaTime * massProduct / (distance.y * distance.y);
+				Vector3 direction = tempBody.transform.position - transform.position;
+				direction.Normalize();
+				
+				float distance = Vector3.Distance(transform.position, tempBody.transform.position);
+				
+				float pull = mMass * tempBody.Mass / distance * distance;
+				
+				acceleration += new Vector2(direction.x * pull, direction.y * pull);
 			}
 		}
 		
-		mVelocity += acceleration;
+		mVelocity += acceleration * Time.deltaTime;
 	}
 	
 	protected void AddVelocityToPosition() {
