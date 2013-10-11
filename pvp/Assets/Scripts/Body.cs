@@ -25,11 +25,7 @@ public class Body : MonoBehaviour {
 	
 	void Update () {
 		UpdateVelocity();
-		
-		Vector3 nPos = transform.position;
-		nPos.x += mVelocity.x;
-		nPos.y += mVelocity.y;
-		transform.position = nPos;
+		AddVelocityToPosition();
 	}
 	
 	
@@ -41,6 +37,13 @@ public class Body : MonoBehaviour {
 	 */
 	protected virtual void UpdateVelocity() {
 		
+	}
+	
+	protected void AddVelocityToPosition() {
+		Vector3 nPos = transform.position;
+		nPos.x += mVelocity.x * Time.deltaTime;
+		nPos.y += mVelocity.y * Time.deltaTime;
+		transform.position = nPos;
 	}
 }
 
