@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Sun : Body {
-
+	// Shiny
 	// Use this for initialization
 	void Start () {
 	
