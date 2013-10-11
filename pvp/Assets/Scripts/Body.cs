@@ -4,39 +4,36 @@ using System.Collections.Generic;
 
 public class Body : MonoBehaviour {
 	// All Body-objects add themselves to this list
-	private static List<Body> sBodies;
+	protected static List<Body> sBodies = new List<Body>();
 	
 	// The velocity of the body.
-	private Vector2 mVelocity;
+	protected Vector2 mVelocity = new Vector2();
 	public Vector2 Velocity {
 		get { return mVelocity; }
 	}
 	
 	// The mass of the body
-	private float mMass;
+	protected float mMass;
 	public float Mass {
 		get { return mMass; }
 		set { mMass = value; }
 	}
 	
-	void Awake() {
-		if (sBodies == null) {
-			sBodies = new List<Body>();	
-		}
-		
-		sBodies.Add (this);
-	}
-	
 	void Start () {
-		
+		sBodies.Add (this);	
 	}
 	
 	void Update () {
-	
+		UpdateVelocity();
+		
+		Vector3 nPos = transform.position;
+		nPos.x += mVelocity.x;
+		nPos.y += mVelocity.y;
+		transform.position = nPos;
 	}
 	
 	
-	public virtual void UpdateVelocity() {
+	protected virtual void UpdateVelocity() {
 		
 	}
 }
