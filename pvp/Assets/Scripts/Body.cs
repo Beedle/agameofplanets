@@ -32,9 +32,22 @@ public class Body : MonoBehaviour {
 		transform.position = nPos;
 	}
 	
-	
+	// Update velocity by acceleration from the 
 	protected virtual void UpdateVelocity() {
+		Vector2 acceleration = new Vector2();
 		
+		foreach (Body tempBody in sBodies) {
+			if (tempBody != this) {
+				
+				//m1*m2/dist*dist
+				float massProduct = tempBody.Mass * mMass;
+				Vector3 distance = tempBody.transform.position - transform.position;
+				acceleration.x += massProduct / (distance.x * distance.x);
+				acceleration.y += massProduct / (distance.y * distance.y);
+			}
+		}
+		
+		mVelocity += acceleration;
 	}
 }
 
