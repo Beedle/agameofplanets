@@ -16,12 +16,8 @@ public class Planet : Body {
 		Vector3 position = mOrbitBody.transform.position;
 		
 		// Calculate the distance to the parent body
-		Vector2 offset = new Vector2();
-		offset.x += Mathf.Cos(mTimer) * mOrbitXFactor * mOrbitDistance;
-		offset.y += Mathf.Sin(mTimer) * mOrbitYFactor * mOrbitDistance;
-		
-		position.x += offset.x;
-		position.y += offset.y;
+		position.x += Mathf.Cos(mTimer * 0.5f) * mOrbitXFactor * mOrbitDistance;
+		position.y += Mathf.Sin(mTimer * 0.5f) * mOrbitYFactor * mOrbitDistance;
 		
 		transform.position = position;
 	}
