@@ -56,8 +56,8 @@ public class Aim : MonoBehaviour {
 		Body body = transform.parent.gameObject.GetComponent<Planet>();
 		Vector2 velocity = body.Velocity;
 		
-		velocity.x = Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 200f;
-		velocity.y = Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 200f;
+		velocity.x = Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 100f;
+		velocity.y = Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 100f;
 		rocket.SetInitialVelocity(velocity);
 	}
 }
