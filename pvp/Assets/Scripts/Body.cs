@@ -25,14 +25,20 @@ public class Body : MonoBehaviour {
 	
 	void Update () {
 		UpdateVelocity();
-		
-		Vector3 nPos = transform.position;
-		nPos.x += mVelocity.x;
-		nPos.y += mVelocity.y;
-		transform.position = nPos;
+		AddVelocityToPosition();
 	}
 	
+<<<<<<< HEAD
 	// Update velocity by acceleration from the 
+=======
+	
+	/* Updates the velocity according to all other bodies.
+	 * 
+	 * Note: The only "output" of the method is to re-assign
+	 * the value of 'mVelocity'. mVelocity should not be affected
+	 * by the delta-time.
+	 */
+>>>>>>> f706a61191ce9c1f69dea948703d66df309f8203
 	protected virtual void UpdateVelocity() {
 		Vector2 acceleration = new Vector2();
 		
@@ -48,6 +54,13 @@ public class Body : MonoBehaviour {
 		}
 		
 		mVelocity += acceleration;
+	}
+	
+	protected void AddVelocityToPosition() {
+		Vector3 nPos = transform.position;
+		nPos.x += mVelocity.x * Time.deltaTime;
+		nPos.y += mVelocity.y * Time.deltaTime;
+		transform.position = nPos;
 	}
 }
 
