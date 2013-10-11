@@ -28,6 +28,21 @@ public class Body : MonoBehaviour {
 		AddVelocityToPosition();
 	}
 	
+	protected virtual void OnTriggerEnter(Collider collider) {
+		Rocket rocket = collider.GetComponent<Rocket>();
+		if (rocket != null && rocket.HasCompletedInitialTouch()) {
+			Debug.LogWarning ("FUCK YEAH");
+			Destroy(rocket.gameObject);
+		}
+	}
+	
+	protected virtual void OnTriggerExit(Collider collider) {
+		Rocket rocket = collider.GetComponent<Rocket>();
+		if (rocket != null) {
+			rocket.InitialTouchCompleted();	
+		}
+	}
+	
 	
 	/* Updates the velocity according to all other bodies.
 	 * 
