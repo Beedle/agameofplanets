@@ -19,18 +19,15 @@ public class Body : MonoBehaviour {
 		set { mMass = value; }
 	}
 	
-	void Start () {
+	protected virtual void Start () {
 		sBodies.Add (this);	
 	}
 	
-	void Update () {
+	protected virtual void Update () {
 		UpdateVelocity();
 		AddVelocityToPosition();
 	}
 	
-<<<<<<< HEAD
-	// Update velocity by acceleration from the 
-=======
 	
 	/* Updates the velocity according to all other bodies.
 	 * 
@@ -38,7 +35,6 @@ public class Body : MonoBehaviour {
 	 * the value of 'mVelocity'. mVelocity should not be affected
 	 * by the delta-time.
 	 */
->>>>>>> f706a61191ce9c1f69dea948703d66df309f8203
 	protected virtual void UpdateVelocity() {
 		Vector2 acceleration = new Vector2();
 		
