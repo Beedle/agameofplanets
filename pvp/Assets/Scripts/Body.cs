@@ -15,7 +15,7 @@ public class Body : MonoBehaviour {
 		set { mMass = value; }
 	}
 	
-	void Start (Vector3 velocity) {
+	void Start () {
 		
 	}
 	
