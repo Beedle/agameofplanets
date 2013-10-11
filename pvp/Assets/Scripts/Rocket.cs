@@ -8,6 +8,14 @@ public class Rocket : Body {
 		Mass = 1f;	
 	}
 	
+	protected override void Update() {
+		base.Update();
+		
+		Vector3 rotation = new Vector3();
+		rotation.z = Mathf.Atan2(mVelocity.y, mVelocity.x) * Mathf.Rad2Deg - 90f;
+		transform.rotation = Quaternion.Euler(rotation);
+	}
+	
 	public void SetInitialVelocity(Vector2 velocity) {
 		mVelocity = velocity;	
 	}
