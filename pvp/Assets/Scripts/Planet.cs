@@ -27,9 +27,11 @@ public class Planet : Body {
 		if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
 			mAim.LeftKey = KeyCode.Q;
 			mAim.RightKey = KeyCode.W;
+			mAim.FireKey = KeyCode.E;
 		} else if (mPlayerSide == PlayerSide.PLAYER_RIGHT) {
 			mAim.LeftKey = KeyCode.O;
 			mAim.RightKey = KeyCode.P;
+			mAim.FireKey = KeyCode.I;
 		}
 	}
 	

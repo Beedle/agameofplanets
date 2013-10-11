@@ -54,8 +54,9 @@ public class Body : MonoBehaviour {
 	
 	protected void AddVelocityToPosition() {
 		Vector3 nPos = transform.position;
-		nPos.x += mVelocity.x * Time.deltaTime;
-		nPos.y += mVelocity.y * Time.deltaTime;
+		nPos.x += mVelocity.x * Time.deltaTime + 0f;
+		nPos.y += mVelocity.y * Time.deltaTime + 0f;
+		nPos.z += 0f;
 		transform.position = nPos;
 	}
 }
