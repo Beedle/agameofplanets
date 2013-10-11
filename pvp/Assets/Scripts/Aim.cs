@@ -22,6 +22,8 @@ public class Aim : MonoBehaviour {
 		set { mFireKey = value; }
 	}
 	
+	private float mRotZ;
+	
 	void Start () {
 		
 	}
@@ -41,9 +43,19 @@ public class Aim : MonoBehaviour {
 		Vector3 euler = transform.rotation.eulerAngles;
 		euler.z += degree * Time.deltaTime;
 		transform.rotation = Quaternion.Euler(euler);
+		
+		mRotZ = euler.z + 90f;
 	}
 	
 	private void FireRocket() {
+		Vector3 position = transform.position;
+		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
 		
+		Rocket rocket = Instantiate(pfRocket, position, rotation) as Rocket;
+		
+		Vector2 velocity = new Vector2();
+		velocity.x = Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 3f;
+		velocity.y = Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 3f;
+		rocket.SetInitialVelocity(velocity);
 	}
 }
