@@ -3,15 +3,22 @@ using System.Collections;
 
 public class Planet : Body {
 	public Body mOrbitBody;
+	public float mOrbitDistance;
 	
-	private static float sOrbitTime = 20f;
+	public float mOrbitXFactor = 1f;
+	public float mOrbitYFactor = 1f;
 	
-	private float mTimer;
+	public float mTimer = 0f;
 	
 	protected override void UpdateVelocity() {
 		mTimer += Time.deltaTime;
 		
-		mVelocity.x = Mathf.Cos (mTimer / sOrbitTime) * 2.5f;
-		mVelocity.y = Mathf.Sin (mTimer / sOrbitTime);
+		Vector3 position = mOrbitBody.transform.position;
+		
+		// Calculate the distance to the parent body
+		position.x += Mathf.Cos(mTimer * 0.5f) * mOrbitXFactor * mOrbitDistance;
+		position.y += Mathf.Sin(mTimer * 0.5f) * mOrbitYFactor * mOrbitDistance;
+		
+		transform.position = position;
 	}
 }
