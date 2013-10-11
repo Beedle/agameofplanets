@@ -44,8 +44,8 @@ public class Body : MonoBehaviour {
 				//m1*m2/dist*dist
 				float massProduct = tempBody.Mass * mMass;
 				Vector3 distance = tempBody.transform.position - transform.position;
-				acceleration.x += massProduct / (distance.x * distance.x);
-				acceleration.y += massProduct / (distance.y * distance.y);
+				acceleration.x += Time.deltaTime * massProduct / (distance.x * distance.x) ;
+				acceleration.y += Time.deltaTime * massProduct / (distance.y * distance.y);
 			}
 		}
 		
