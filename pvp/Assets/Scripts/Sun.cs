@@ -7,4 +7,12 @@ public class Sun : Body {
 		
 		Mass = 100f;	
 	}
+	
+	protected override void Update() {
+		base.Update();
+	}
+	
+	protected override void UpdateVelocity() {
+		// DO NOTHING
+	}
 }
