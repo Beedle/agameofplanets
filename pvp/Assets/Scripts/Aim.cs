@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Aim : MonoBehaviour {
+	public Rocket pfRocket;
+	
 	protected KeyCode mLeftKey;
 	public KeyCode LeftKey {
 		get { return mLeftKey; }
@@ -14,15 +16,23 @@ public class Aim : MonoBehaviour {
 		set { mRightKey = value; }
 	}
 	
+	protected KeyCode mFireKey;
+	public KeyCode FireKey {
+		get { return mFireKey; }
+		set { mFireKey = value; }
+	}
+	
 	void Start () {
 		
 	}
 	
 	void Update () {
 		if (Input.GetKey(mLeftKey)) {
-			RotateAlongZ(-90f);
-		} else if (Input.GetKey(mRightKey)) {
 			RotateAlongZ(90f);
+		} else if (Input.GetKey(mRightKey)) {
+			RotateAlongZ(-90f);
+		} else if (Input.GetKeyDown(mFireKey)) {
+			FireRocket();	
 		}
 	}
 	
@@ -31,5 +41,9 @@ public class Aim : MonoBehaviour {
 		Vector3 euler = transform.rotation.eulerAngles;
 		euler.z += degree * Time.deltaTime;
 		transform.rotation = Quaternion.Euler(euler);
+	}
+	
+	private void FireRocket() {
+		
 	}
 }

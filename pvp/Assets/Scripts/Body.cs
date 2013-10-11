@@ -7,7 +7,7 @@ public class Body : MonoBehaviour {
 	protected static List<Body> sBodies = new List<Body>();
 	
 	// The velocity of the body.
-	protected Vector2 mVelocity = new Vector2();
+	protected Vector2 mVelocity = new Vector2(0f, 0f);
 	public Vector2 Velocity {
 		get { return mVelocity; }
 	}
