@@ -25,15 +25,21 @@ public class TimingMinigame : PlayerGUIBehaviour {
 	// The GUI Content
 	public Texture mGuiTexture;
 	
+	// The Refill GUI
+	private RefillGUI mRefillGUI;
+	
 	// The expected sequence of characters
 	private List<CharItem> mSequence = new List<CharItem>();
 	private float mAddTimer;
+	private int mCombo;
 	
 	
 	void Start() {
 		AddCharItem();
 		AddCharItem();
 		mSequence[0].timer -= 1f;
+		
+		mRefillGUI = gameObject.GetComponent<RefillGUI>();
 	}
 	
 	void Update () {
@@ -56,7 +62,13 @@ public class TimingMinigame : PlayerGUIBehaviour {
 			
 			if (Input.GetKeyDown(""+key)) {
 				float accuracy = Mathf.Abs(next.timer);
-				Debug.Log("Accuracy: " + accuracy);
+				if (accuracy < 0.3f) {
+					mCombo++;
+				} else {
+					mCombo = 0;
+				}
+				
+				mRefillGUI.OnTimingKey(accuracy, mCombo);
 				mSequence.RemoveAt(0);
 			}
 		}
@@ -69,6 +81,7 @@ public class TimingMinigame : PlayerGUIBehaviour {
 			
 			if (item.timer < -0.2f) {
 				mSequence.RemoveAt(i--);
+				mCombo = 0;
 			}
 		}
 	}
@@ -91,6 +104,7 @@ public class TimingMinigame : PlayerGUIBehaviour {
 	
 	void OnGUI() {
 		SetGUIMatrix();
+		DrawActionLabels();
 		
 		// Draw the background
 		Rect rect = new Rect();
