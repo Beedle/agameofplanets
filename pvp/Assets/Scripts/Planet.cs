@@ -97,7 +97,7 @@ public class Planet : Body {
 			Planet target = PlayerPlanets[FindClosestPlayer()];
 			transform.LookAt(target.transform.position);
 
-			mAim.FireRocket(mAim.pfSmallRocket, 100f);
+			mAim.FireRocket(100f, transform.position);
 	
 			renderer.material.color = Color.green;
 		}
