@@ -76,6 +76,7 @@ public abstract class Rocket : Body {
 		// by themselves.
 		ParticleEffect part = gameObject.GetComponentInChildren<ParticleEffect>();
 		if (part != null) {
+			part.GetComponent<ParticleSystem>().emissionRate = 0f;
 			part.transform.parent = null;	
 			part.mTimer = 10f;
 		}
