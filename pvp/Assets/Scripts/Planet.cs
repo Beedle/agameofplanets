@@ -134,12 +134,14 @@ public class Planet : Body {
 		}
 		
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
-				Debug.Log("AI ");	
-				renderer.material.color = Color.red;
-				
-				Planet target = PlayerPlanets[FindClosestPlayer()];
-				transform.LookAt(target.transform.position);
-				mAim.FireRocket(mAim.pfSmallRocket, 100f);
+			rocket.DestroyRocket();
+			
+			Debug.Log("AI ");	
+			renderer.material.color = Color.red;
+			
+			Planet target = PlayerPlanets[FindClosestPlayer()];
+			transform.LookAt(target.transform.position);
+			mAim.FireRocket(mAim.pfSmallRocket, 100f);
 		}
 	}
 	
