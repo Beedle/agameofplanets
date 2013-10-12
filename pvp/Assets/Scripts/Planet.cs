@@ -11,6 +11,7 @@ public class Planet : Body {
 	
 	public Body mOrbitBody;
 	public float mOrbitDistance;
+	public float Mass = 25f;
 	
 	public PlayerSide mPlayerSide = PlayerSide.PLAYER_UNDEFINED;
 	public Aim mAim;
@@ -30,7 +31,7 @@ public class Planet : Body {
 	protected override void Start() {
 		base.Start();
 		
-		Mass = 25f;	
+			
 		
 		if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
 			mAim.LeftKey = KeyCode.Q;
