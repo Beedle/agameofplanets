@@ -88,6 +88,7 @@ public class Planet : Body {
 			
 		}
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
+
 			Debug.Log("AI ");	
 			
 			renderer.material.color = Color.red;
