@@ -47,11 +47,7 @@ public class Rocket : Body {
 	public GameObject GetParent() {	
 		return mMyParent;	
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 1375ef2778f3e0b6075dcba700813eba1a525802
 	public void DestroyRocket() {
 		// Remove particles from gameObject so they can slowly face
 		// by themselves.
