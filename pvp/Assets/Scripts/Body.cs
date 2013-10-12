@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public class Body : MonoBehaviour {
 	// All Body-objects add themselves to this list
-	protected static List<Body> sBodies = new List<Body>();
+	public static List<Body> sBodies = new List<Body>();
+	
+	// This flag must be toggled when the game is over
+	public static bool gameOver = false;
 	
 	// The velocity of the body.
 	protected Vector2 mVelocity = new Vector2(0f, 0f);
@@ -13,26 +16,29 @@ public class Body : MonoBehaviour {
 	}
 	
 	// The mass of the body
-	protected float mMass;
-	public float Mass {
-		get { return mMass; }
-		set { mMass = value; }
-	}
+	public float mMass;
+	
 	
 	protected virtual void Start () {
 		sBodies.Add (this);	
 	}
 	
 	protected virtual void Update () {
-		UpdateVelocity();
-		AddVelocityToPosition();
+		if (!gameOver) {
+			UpdateVelocity();
+			AddVelocityToPosition();
+		}
+	}
+	
+	void OnDestroy() {
+		sBodies.Remove(this);	
 	}
 	
 	protected virtual void OnTriggerEnter(Collider collider) {
 		Rocket rocket = collider.GetComponent<Rocket>();
 		if (rocket != null && rocket.HasCompletedInitialTouch()) {
 			this.OnRocketCollide(rocket);
-			Destroy(rocket.gameObject);
+			rocket.DestroyRocket();
 		}
 	}
 	
@@ -63,14 +69,14 @@ public class Body : MonoBehaviour {
 		Vector2 acceleration = new Vector2();
 		
 		foreach (Body tempBody in sBodies) {
-			if (tempBody != this) {
+			if (tempBody != this && tempBody.gameObject.activeSelf) {
 				
 				Vector3 direction = tempBody.transform.position - transform.position;
 				direction.Normalize();
 				
 				float distance = Vector3.Distance(transform.position, tempBody.transform.position);
 				
-				float pull = mMass * tempBody.Mass / distance * distance;
+				float pull = mMass * tempBody.mMass / distance * distance;
 				
 				acceleration += new Vector2(direction.x * pull, direction.y * pull);
 			}

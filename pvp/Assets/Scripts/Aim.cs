@@ -23,9 +23,10 @@ public class Aim : MonoBehaviour {
 	}
 	
 	private float mRotZ = 90f;
+	private ReloadGUI mReload;
 	
 	void Start () {
-		
+		mReload = transform.parent.GetComponent<ReloadGUI>();
 	}
 	
 	void Update () {

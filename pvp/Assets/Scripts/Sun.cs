@@ -5,7 +5,7 @@ public class Sun : Body {
 	protected override void Start() {
 		base.Start();
 		
-		Mass = 100f;	
+
 	}
 	
 	protected override void Update() {

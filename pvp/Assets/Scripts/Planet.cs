@@ -34,8 +34,6 @@ public class Planet : Body {
 	protected override void Start() {
 		base.Start();
 		
-		Mass = 25f;	
-		
 		if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
 			PlayerPlanets.Add(this);
 			mAim.LeftKey = KeyCode.Q;
@@ -70,11 +68,11 @@ public class Planet : Body {
 		
 		if (mHealth <= 0) {
 			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
-				Debug.Log("Left ");	
+				Debug.Log("Left got PÅWND!");	
 			}
 			
 			else {
-				Debug.Log("Right ");	
+				Debug.Log("Right got PÅWND!");	
 			}
 			
 			Debug.Log (mHealth);
@@ -82,7 +80,6 @@ public class Planet : Body {
 		}
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
 				Debug.Log("AI ");	
-				//int WhatPlanetShot = FindClosestPlayer
 				renderer.material.color = Color.red;
 				
 				Planet target = PlayerPlanets[FindClosestPlayer()];

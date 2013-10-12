@@ -6,7 +6,7 @@ public class Rocket : Body {
 	private GameObject mMyParent;
 	
 	protected override void Start() {
-		Mass = 1f;	
+		mMass = 1f;	
 	}
 	
 	protected override void Update() {
@@ -47,5 +47,16 @@ public class Rocket : Body {
 	public GameObject GetParent() {
 		
 		return mMyParent;	
+
+	public void DestroyRocket() {
+		// Remove particles from gameObject so they can slowly face
+		// by themselves.
+		ParticleEffect part = gameObject.GetComponentInChildren<ParticleEffect>();
+		if (part != null) {
+			part.transform.parent = null;	
+			part.mTimer = 10f;
+		}
+		
+		Destroy(gameObject);
 	}
 }
