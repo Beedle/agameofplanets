@@ -24,7 +24,18 @@ public class RefillGUI : PlayerGUIBehaviour {
 		float score = 1f - timeOffset;
 		if (score < 0f) return;
 		
+		// Do something or something
+	}
+	
+	public bool FireRocket(Rocket rocket) {
+		float cost = rocket.EnergyCost();
 		
+		if (mEnergy >= cost) {
+			mEnergy -= cost;
+			return true;
+		}
+		
+		return false;
 	}
 	
 	void OnGUI() {

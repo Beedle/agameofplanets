@@ -58,6 +58,10 @@ public class Aim : MonoBehaviour {
 	}
 	
 	public void FireRocket(Rocket prefab, float speed) {
+		if (!mRefillGUI.FireRocket(prefab)) {
+			return;
+		} 
+		
 		Vector3 position = transform.position;
 		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
 		
