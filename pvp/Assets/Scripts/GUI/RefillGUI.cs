@@ -21,6 +21,9 @@ public class RefillGUI : PlayerGUIBehaviour {
 	}
 	
 	void OnTimingKey(float timeOffset) {
+		float score = 1f - timeOffset;
+		if (score < 0f) return;
+		
 		
 	}
 	

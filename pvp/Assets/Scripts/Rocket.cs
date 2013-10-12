@@ -1,7 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Rocket : Body {
+public abstract class Rocket : Body {
+	public enum Type {
+		DEFENSIVE,
+		SMALL_NUKE,
+		LARGE_NUKE,
+	}
+	
+	protected Type mType;
+	public Type RocketType {
+		get { return mType; }
+	}
+	
 	private bool mInitialTouchComplete = false;
 	private GameObject mMyParent;
 	
@@ -21,6 +32,10 @@ public class Rocket : Body {
 	public void SetInitialVelocity(Vector2 velocity) {
 		mVelocity = velocity;	
 	}
+	
+	
+	// Abstract Rocket Methods
+	public abstract float EnergyCost();
 	
 	
 	protected override void OnTriggerEnter(Collider c) {
