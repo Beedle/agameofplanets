@@ -46,7 +46,7 @@ public abstract class Rocket : Body {
 	protected override void OnTriggerEnter(Collider collider) {
 		DefRocket rocket = collider.GetComponent<DefRocket>();
 		if (rocket != null && rocket.HasCompletedInitialTouch()) {
-			this.OnRocketCollide(rocket);
+			rocket.OnRocketCollide(this);
 			rocket.DestroyRocket();
 			this.DestroyRocket();
 		}
@@ -66,14 +66,11 @@ public abstract class Rocket : Body {
 	}
 	
 	public void SetParent(GameObject parent) {
-		
 		mMyParent = parent;	
 	}
 	
 	public GameObject GetParent() {
-		
 		return mMyParent;
-
 	}
 
 	public void DestroyRocket() {
