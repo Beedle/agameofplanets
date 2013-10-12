@@ -44,9 +44,9 @@ public class Rocket : Body {
 		mMyParent = parent;	
 	}
 	
-	public GameObject GetParent() {
-		
+	public GameObject GetParent() {	
 		return mMyParent;	
+	}
 
 	public void DestroyRocket() {
 		// Remove particles from gameObject so they can slowly face
