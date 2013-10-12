@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Rocket : Body {
 	private bool mInitialTouchComplete = false;
+	private GameObject mMyParent;
 	
 	protected override void Start() {
 		Mass = 1f;	
@@ -36,5 +37,15 @@ public class Rocket : Body {
 	
 	public void InitialTouchCompleted() {
 		mInitialTouchComplete = true;	
+	}
+	
+	public void SetParent(GameObject parent) {
+		
+		mMyParent = parent;	
+	}
+	
+	public GameObject GetParent() {
+		
+		return mMyParent;	
 	}
 }

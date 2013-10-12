@@ -40,7 +40,7 @@ public class Body : MonoBehaviour {
 		Rocket rocket = collider.GetComponent<Rocket>();
 		if (rocket != null) {
 			rocket.InitialTouchCompleted();
-			rocket.SetParent(this);
+			//rocket.SetParent(this);
 		}
 	}
 	
