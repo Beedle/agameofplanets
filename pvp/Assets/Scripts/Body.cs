@@ -62,7 +62,7 @@ public class Body : MonoBehaviour {
 		Vector2 acceleration = new Vector2();
 		
 		foreach (Body tempBody in sBodies) {
-			if (tempBody != this) {
+			if (tempBody != this && tempBody.gameObject.activeSelf) {
 				
 				Vector3 direction = tempBody.transform.position - transform.position;
 				direction.Normalize();

@@ -60,14 +60,14 @@ public class Planet : Body {
 		
 		if (mHealth <= 0) {
 			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
-				Debug.Log("Left ");	
+				Debug.Log("Left got PÅWND!");	
 			}
 			
 			else {
-				Debug.Log("Right ");	
+				Debug.Log("Right got PÅWND!");	
 			}
 			
-			Debug.Log (mHealth);
+			this.gameObject.SetActive(false);
 		}
 	}
 }
