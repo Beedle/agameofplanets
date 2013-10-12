@@ -66,7 +66,10 @@ public class Planet : Body {
 	}
 	
 	protected override void OnRocketCollide(Rocket rocket) {
-		mHealth -= 10;
+		
+			
+			mHealth -= 10;
+		
 		
 		if (mHealth <= 0) {
 			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
