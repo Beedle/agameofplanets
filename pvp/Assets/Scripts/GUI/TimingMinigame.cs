@@ -30,6 +30,7 @@ public class TimingMinigame : PlayerGUIBehaviour {
 	
 	// The expected sequence of characters
 	private List<CharItem> mSequence = new List<CharItem>();
+	private Vector2 mLabelPosition;
 	private float mAddTimer;
 	private int mCombo;
 	
@@ -131,5 +132,9 @@ public class TimingMinigame : PlayerGUIBehaviour {
 			
 			GUI.Box(txtRect, ""+item.key, style);
 		}
+	}
+	
+	void AddComboLabel() {
+			
 	}
 }
