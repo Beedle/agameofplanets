@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class ReloadGUI : MonoBehaviour {
 	private static char[] sLeftKeys = new char[] {
-		'q', 'w', 'e', 'r', 't',
+		 't',
 		'a', 's', 'd', 'f',
 		'z', 'x', 'c', 'v',
 	};
 	
 	private static char[] sRightKeys = new char[] {
-		'y', 'u', 'i', 'o', 'p',
+		'y',
 		'g', 'h', 'j', 'k', 'l',
 		'b', 'n', 'm'
 	};
