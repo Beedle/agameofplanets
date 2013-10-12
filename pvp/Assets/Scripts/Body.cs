@@ -92,5 +92,13 @@ public class Body : MonoBehaviour {
 		nPos.z += 0f;
 		transform.position = nPos;
 	}
+	
+	protected bool CheckPosition() {
+		if (Vector3.Distance(transform.position, new Vector3(0,0,0)) > 600) {
+			return false;
+		}
+		else return true;
+	}
+		
 }
 

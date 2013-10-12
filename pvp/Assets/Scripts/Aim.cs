@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Aim : MonoBehaviour {
-	public Rocket pfRocket;
+	public Rocket pfSmallRocket;
+	public Rocket pfLargeRocket;
 	public DefRocket pfDefRocket;
 	
 	protected KeyCode mLeftKey;
@@ -17,10 +18,16 @@ public class Aim : MonoBehaviour {
 		set { mRightKey = value; }
 	}
 	
-	protected KeyCode mFireKey;
-	public KeyCode FireKey {
-		get { return mFireKey; }
-		set { mFireKey = value; }
+	protected KeyCode mFireSmallKey;
+	public KeyCode FireSmallKey {
+		get { return mFireSmallKey; }
+		set { mFireSmallKey = value; }
+	}
+	
+	protected KeyCode mFireLargeKey;
+	public KeyCode FireLargeKey {
+		get { return mFireLargeKey; }
+		set { mFireLargeKey = value; }
 	}
 	
 	protected KeyCode mDefFireKey;
@@ -41,53 +48,26 @@ public class Aim : MonoBehaviour {
 			RotateAlongZ(90f);
 		} else if (Input.GetKey(mRightKey)) {
 			RotateAlongZ(-90f);
-		} else if (Input.GetKeyDown(mFireKey)) {
-			FireRocket();	
+		} else if (Input.GetKeyDown(mFireSmallKey)) {
+			FireRocket(pfSmallRocket, 100f);	
 		} else if (Input.GetKeyDown(mDefFireKey)) {
-			FireDefRocket();
+			FireRocket(pfDefRocket, 25f);
+		} else if (Input.GetKeyDown(mFireLargeKey)) {
+			FireRocket(pfLargeRocket, 100f);	
 		}
 	}
 	
-	public void FireRocketAI( Vector3 pos) {
-		
-		Vector3 position = pos;
-		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
-		
-		Rocket rocket = Instantiate(pfRocket, position, rotation) as Rocket;
-		
-		Body body = transform.parent.gameObject.GetComponent<Planet>();
-		Vector2 velocity = body.Velocity;
-		
-		velocity.x = Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 100f;
-		velocity.y = Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 100f;
-		rocket.SetInitialVelocity(velocity);
-	}
-	
-	private void FireRocket() {
+	public void FireRocket(Rocket prefab, float speed) {
 		Vector3 position = transform.position;
 		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
 		
-		Rocket rocket = Instantiate(pfRocket, position, rotation) as Rocket;
+		Rocket rocket = Instantiate(prefab, position, rotation) as Rocket;
 		
 		Body body = transform.parent.gameObject.GetComponent<Planet>();
 		Vector2 velocity = body.Velocity;
 		
-		velocity.x += Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 100f;
-		velocity.y += Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 100f;
-		rocket.SetInitialVelocity(velocity);
-	}
-	
-	private void FireDefRocket() {
-		Vector3 position = transform.position;
-		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
-		
-		DefRocket rocket = Instantiate(pfDefRocket, position, rotation) as DefRocket;
-		
-		Body body = transform.parent.gameObject.GetComponent<Planet>();
-		Vector2 velocity = body.Velocity;
-		
-		velocity.x += Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 25f;
-		velocity.y += Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 25f;
+		velocity.x += Mathf.Cos(Mathf.Deg2Rad * mRotZ) * speed;
+		velocity.y += Mathf.Sin(Mathf.Deg2Rad * mRotZ) * speed;
 		rocket.SetInitialVelocity(velocity);
 	}
 	

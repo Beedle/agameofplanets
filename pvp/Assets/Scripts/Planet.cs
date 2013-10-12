@@ -41,17 +41,17 @@ public class Planet : Body {
 			PlayerPlanets.Add(this);
 			mAim.LeftKey = KeyCode.Q;
 			mAim.RightKey = KeyCode.W;
-			mAim.FireKey = KeyCode.E;
-			mAim.DefFireKey = KeyCode.R;
+			mAim.DefFireKey = KeyCode.E;
+			mAim.FireSmallKey = KeyCode.R;
+			mAim.FireLargeKey = KeyCode.T;
 		} else if (mPlayerSide == PlayerSide.PLAYER_RIGHT) {
 			PlayerPlanets.Add(this);
 			mAim.LeftKey = KeyCode.O;
 			mAim.RightKey = KeyCode.P;
-			mAim.FireKey = KeyCode.I;
-			mAim.DefFireKey = KeyCode.U;
-		}
-		else if (mPlayerSide == PlayerSide.PLANET_AI) {
-			
+			mAim.DefFireKey = KeyCode.I;
+			mAim.FireSmallKey = KeyCode.U;
+			mAim.FireLargeKey = KeyCode.Y;
+		} else if (mPlayerSide == PlayerSide.PLANET_AI) {	
 			renderer.material.color = Color.green;	
 		}
 	}
@@ -69,7 +69,10 @@ public class Planet : Body {
 	}
 	
 	protected override void OnRocketCollide(Rocket rocket) {
-		mHealth -= 10;
+		
+			
+			mHealth -= 10;
+		
 		
 		if (mHealth <= 0) {
 			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
@@ -94,7 +97,8 @@ public class Planet : Body {
 				
 				Planet target = PlayerPlanets[FindClosestPlayer()];
 				transform.LookAt(target.transform.position);
-				mAim.FireRocketAI(transform.position);
+
+				mAim.FireRocket(mAim.pfSmallRocket, 100f);
 			}
 		}
 	}

@@ -27,6 +27,11 @@ public abstract class Rocket : Body {
 		Vector3 rotation = new Vector3();
 		rotation.z = Mathf.Atan2(mVelocity.y, mVelocity.x) * Mathf.Rad2Deg - 90f;
 		transform.rotation = Quaternion.Euler(rotation);
+		
+		if (!CheckPosition())
+		{
+			DestroyRocket();	
+		}
 	}
 	
 	public void SetInitialVelocity(Vector2 velocity) {
@@ -38,8 +43,12 @@ public abstract class Rocket : Body {
 	public abstract float EnergyCost();
 	
 	
-	protected override void OnTriggerEnter(Collider c) {
-		// DO NOTHING YO
+	protected override void OnTriggerEnter(Collider collider) {
+		DefRocket rocket = collider.GetComponent<DefRocket>();
+		if (rocket != null && rocket.HasCompletedInitialTouch()) {
+			this.OnRocketCollide(rocket);
+			rocket.DestroyRocket();
+		}
 	}
 	
 	protected override void OnTriggerExit(Collider ccc) {
@@ -71,10 +80,13 @@ public abstract class Rocket : Body {
 		// by themselves.
 		ParticleEffect part = gameObject.GetComponentInChildren<ParticleEffect>();
 		if (part != null) {
+			part.GetComponent<ParticleSystem>().emissionRate = 0f;
 			part.transform.parent = null;	
 			part.mTimer = 10f;
 		}
 		
 		Destroy(gameObject);
 	}
+	
+	
 }
