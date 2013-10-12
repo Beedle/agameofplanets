@@ -39,7 +39,8 @@ public class Body : MonoBehaviour {
 	protected virtual void OnTriggerExit(Collider collider) {
 		Rocket rocket = collider.GetComponent<Rocket>();
 		if (rocket != null) {
-			rocket.InitialTouchCompleted();	
+			rocket.InitialTouchCompleted();
+			rocket.SetParent(this);
 		}
 	}
 	
