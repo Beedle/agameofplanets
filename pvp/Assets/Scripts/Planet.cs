@@ -37,15 +37,17 @@ public class Planet : Body {
 		if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
 			PlayerPlanets.Add(this);
 			mAim.LeftKey = KeyCode.Q;
-			mAim.RightKey = KeyCode.E;
-			mAim.FireKey = KeyCode.W;
+			mAim.RightKey = KeyCode.W;
+			mAim.FireKey = KeyCode.E;
+			mAim.DefFireKey = KeyCode.R;
 		} else if (mPlayerSide == PlayerSide.PLAYER_RIGHT) {
 			PlayerPlanets.Add(this);
-			mAim.LeftKey = KeyCode.I;
+			mAim.LeftKey = KeyCode.O;
 			mAim.RightKey = KeyCode.P;
-			mAim.FireKey = KeyCode.O;
+			mAim.FireKey = KeyCode.I;
+			mAim.DefFireKey = KeyCode.U;
 		}
-		else if (mPlayerSide ==PlayerSide.PLANET_AI) {
+		else if (mPlayerSide == PlayerSide.PLANET_AI) {
 			
 			renderer.material.color = Color.green;	
 		}
