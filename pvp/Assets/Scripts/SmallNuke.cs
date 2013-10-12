@@ -8,7 +8,7 @@ public class SmallNuke : Rocket {
 	}
 	
 	public override float EnergyCost(){
-		return 10f;
+		return 25f;
 	}
 	
 	public override float Damage() {
