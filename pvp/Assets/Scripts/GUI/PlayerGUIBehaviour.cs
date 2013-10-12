@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GUIBehaviour : MonoBehaviour {
+public class PlayerGUIBehaviour : MonoBehaviour {
 	protected void SetGUIMatrix() {
 		float nativeWidth = 1024f;
 		float nativeHeight = 768f;

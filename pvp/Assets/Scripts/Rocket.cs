@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Rocket : Body {
 	private bool mInitialTouchComplete = false;
+	private GameObject mMyParent;
 	
 	protected override void Start() {
 		base.Start();
@@ -39,6 +40,16 @@ public class Rocket : Body {
 		mInitialTouchComplete = true;	
 	}
 	
+	public void SetParent(GameObject parent) {
+		
+		mMyParent = parent;	
+	}
+	
+	public GameObject GetParent() {
+		
+		return mMyParent;
+	}
+
 	public void DestroyRocket() {
 		// Remove particles from gameObject so they can slowly face
 		// by themselves.

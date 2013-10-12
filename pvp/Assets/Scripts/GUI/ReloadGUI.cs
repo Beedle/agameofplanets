@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ReloadGUI : GUIBehaviour {
+public class ReloadGUI : PlayerGUIBehaviour {
 	
 	public Texture mGuiTexture;
-	
+	public Planet.PlayerSide mPlayerSide;
 	
 	
 	void Start () {
@@ -16,6 +16,14 @@ public class ReloadGUI : GUIBehaviour {
 	}
 	
 	void OnGUI() {
-			
+		SetGUIMatrix();
+		
+		Rect rect = new Rect();
+		rect.x = ((mPlayerSide == Planet.PlayerSide.PLAYER_LEFT) ? 25f : 1024f-25f-200f );
+		rect.y = 768-180-25;
+		rect.width = 200f;
+		rect.height = 60f;
+		
+		GUI.Box(rect, mGuiTexture);
 	}
 }

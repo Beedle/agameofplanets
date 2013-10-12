@@ -1,13 +1,17 @@
 ﻿
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Planet : Body {
 	public enum PlayerSide {
 		PLAYER_UNDEFINED,
 		PLAYER_LEFT,
 		PLAYER_RIGHT,
+		PLANET_AI,
 	}
+	
+	protected static List<Planet> PlayerPlanets = new List<Planet>();
 	
 	public Body mOrbitBody;
 	public float mOrbitDistance;
@@ -31,15 +35,21 @@ public class Planet : Body {
 		base.Start();
 		
 		if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
+			PlayerPlanets.Add(this);
 			mAim.LeftKey = KeyCode.Q;
 			mAim.RightKey = KeyCode.W;
 			mAim.FireKey = KeyCode.E;
 			mAim.DefFireKey = KeyCode.R;
 		} else if (mPlayerSide == PlayerSide.PLAYER_RIGHT) {
+			PlayerPlanets.Add(this);
 			mAim.LeftKey = KeyCode.O;
 			mAim.RightKey = KeyCode.P;
 			mAim.FireKey = KeyCode.I;
 			mAim.DefFireKey = KeyCode.U;
+		}
+		else if (mPlayerSide == PlayerSide.PLANET_AI) {
+			
+			renderer.material.color = Color.green;	
 		}
 	}
 	
@@ -67,7 +77,50 @@ public class Planet : Body {
 				Debug.Log("Right got PÅWND!");	
 			}
 			
-			this.gameObject.SetActive(false);
+			Debug.Log (mHealth);
+			
+		}
+		if (mPlayerSide == PlayerSide.PLANET_AI) {
+				Debug.Log("AI ");	
+				renderer.material.color = Color.red;
+				
+				Planet target = PlayerPlanets[FindClosestPlayer()];
+				transform.LookAt(target.transform.position);
+				mAim.FireRocketAI(transform.position);
 		}
 	}
+	
+	protected int FindClosestPlayer() {
+		
+		float DistRightPlayer;
+		float DistLeftPlater;
+		int numRightPlayer;
+		int numLeftPlayer;
+		
+		if( PlayerPlanets[0].mPlayerSide == PlayerSide.PLAYER_RIGHT) {
+			
+			DistRightPlayer = Vector3.Distance(PlayerPlanets[0].transform.position, this.transform.position);
+			numRightPlayer = 0;
+			DistLeftPlater = Vector3.Distance(PlayerPlanets[1].transform.position, this.transform.position);
+			numLeftPlayer = 1;
+		}
+		else {
+			
+			DistRightPlayer = Vector3.Distance(PlayerPlanets[1].transform.position, this.transform.position);
+			numRightPlayer = 1;
+			DistLeftPlater = Vector3.Distance(PlayerPlanets[0].transform.position, this.transform.position);
+			numLeftPlayer = 0;
+		}
+		
+		if (DistLeftPlater < DistRightPlayer) {
+			
+			return numLeftPlayer;
+		}
+		else {
+			
+			return numRightPlayer;	
+		}
+	}
+	
+	
 }
