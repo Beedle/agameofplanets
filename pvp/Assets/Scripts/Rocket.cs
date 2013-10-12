@@ -48,6 +48,7 @@ public abstract class Rocket : Body {
 		if (rocket != null && rocket.HasCompletedInitialTouch()) {
 			this.OnRocketCollide(rocket);
 			rocket.DestroyRocket();
+			this.DestroyRocket();
 		}
 	}
 	

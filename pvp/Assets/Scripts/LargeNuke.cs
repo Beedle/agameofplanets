@@ -12,6 +12,6 @@ public class LargeNuke : Rocket {
 	}
 	
 	public override float Damage() {
-		return 10f;	
+		return 20f;	
 	}
 }

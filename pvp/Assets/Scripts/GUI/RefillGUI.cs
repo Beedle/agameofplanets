@@ -11,7 +11,7 @@ public class RefillGUI : PlayerGUIBehaviour {
 	
 	
 	void Start () {
-		
+		AddActionLabel("HOHOHOHOOHOHHOHO", new Vector2(100f, 100f), new Vector2(400f, 400f), 30f, 40, Color.white);
 	}
 	
 	void Update () {
@@ -20,15 +20,27 @@ public class RefillGUI : PlayerGUIBehaviour {
 		if (mEnergy < 0.0f) mEnergy = 0f;
 	}
 	
-	void OnTimingKey(float timeOffset) {
+	public void OnTimingKey(float timeOffset, int combo) {
 		float score = 1f - timeOffset;
 		if (score < 0f) return;
 		
+		mEnergy += score * combo;
+	}
+	
+	public bool FireRocket(Rocket rocket) {
+		float cost = rocket.EnergyCost();
 		
+		if (mEnergy >= cost) {
+			mEnergy -= cost;
+			return true;
+		}
+		
+		return false;
 	}
 	
 	void OnGUI() {
 		SetGUIMatrix();
+		DrawActionLabels();
 		
 		// Draw the background texture
 		Rect rect = new Rect();
