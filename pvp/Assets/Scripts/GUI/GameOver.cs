@@ -21,16 +21,19 @@ public class GameOver : PlayerGUIBehaviour {
 				new Vector2(512f, 50f),
 				new Vector2(512f, 50f), float.MaxValue, 50, Color.white);
 		
-		AddActionLabel("Bitches gots to go",
+		AddActionLabel("The other guy suck",
 				new Vector2(512f, 400f),
-				new Vector2(512f, 400f), float.MaxValue, 30, Color.green);
+				new Vector2(512f, 400f), float.MaxValue, 30, Color.white);
 	}
 	
 	void OnGUI() {
 		SetGUIMatrix();
 		
+		DrawActionLabels();
 		GUI.Box(new Rect(0f, 0f, 1024f, 768f), "");
 		
-		
+		if (GUI.Button(new Rect(512-60, 768-90, 120, 60), "REMATCH")) {
+			Application.LoadLevel(0);	
+		}
 	}
 }
