@@ -81,11 +81,13 @@ public class Planet : Body {
 	protected override void OnRocketCollide(Rocket rocket) {
 		float damage = rocket.Damage();
 		mHealth -= damage;
-		mHealth = -5;
+		mHealth = 100;
+		
 		
 		for (int i=4; i>=(int)mHealth/20; i--) {
 			moons[i].SetActive(false);	
 		}
+		
 		
 		if (mHealth <= 0f) {
 			Body.gameOver = true;
