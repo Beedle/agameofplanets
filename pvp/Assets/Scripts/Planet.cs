@@ -88,7 +88,7 @@ public class Planet : Body {
 				ShootBackAI = true;
 				NumOfShootFiering += 3;
 			
-				if(NumOfShootFiering && ShootBackAI) {
+				if(NumOfShootFiering > 0 && ShootBackAI) {
 				
 				renderer.material.color = Color.red;
 				
