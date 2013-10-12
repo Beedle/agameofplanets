@@ -72,7 +72,7 @@ public class Planet : Body {
 		float damage = rocket.Damage();
 		mHealth -= damage;
 		
-		for (int i=4; i>(int)mHealth/20; i--) {
+		for (int i=4; i>=(int)mHealth/20; i--) {
 			moons[i].SetActive(false);	
 		}
 		
