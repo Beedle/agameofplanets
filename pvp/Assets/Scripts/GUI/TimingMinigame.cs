@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TimingMinigame : MonoBehaviour {
+public class TimingMinigame : GUIBehaviour {
 	private class CharItem {
 		public float timer;
 		public char  key;
@@ -90,14 +90,7 @@ public class TimingMinigame : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		//set up scaling
-		float nativeWidth = 1024f;
-		float nativeHeight = 768f;
-		
-		float rx = Screen.width / nativeWidth;
-		float ry = Screen.height / nativeHeight;
-		
-		GUI.matrix = Matrix4x4.TRS(new Vector3(0f,0f,0f), Quaternion.identity, new Vector3(rx, ry, 1f));
+		SetGUIMatrix();
 		
 		// Draw the background
 		Rect rect = new Rect();
