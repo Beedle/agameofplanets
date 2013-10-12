@@ -52,12 +52,22 @@ public class ReloadMinigame : MonoBehaviour {
 			keySet = sRightKeys;
 		} else return null;
 		
-		// Get 3 random characters
+		// Get 3 random and unique characters
 		List<char> list = new List<char>();
 		
-		for (int i=0; i<3; i++) {
+		while (list.Count < 3) {
 			int idx = Random.Range(0, (int)keySet.Length);
-			list.Add(keySet[idx]);
+			
+			bool unique = true;
+			for (int j=0; j<list.Count; j++) {
+				if (list[j] == keySet[idx]) {
+					unique = false;
+				}
+			}
+			
+			if (unique) {
+				list.Add(keySet[idx]);
+			}
 		}
 		
 		return list;

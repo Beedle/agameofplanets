@@ -30,8 +30,6 @@ public class Planet : Body {
 	protected override void Start() {
 		base.Start();
 		
-		Mass = 25f;	
-		
 		if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
 			mAim.LeftKey = KeyCode.Q;
 			mAim.RightKey = KeyCode.W;
