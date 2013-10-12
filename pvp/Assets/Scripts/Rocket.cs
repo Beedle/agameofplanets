@@ -2,6 +2,17 @@
 using System.Collections;
 
 public class Rocket : Body {
+	public enum Type {
+		DEFENSIVE,
+		SMALL_NUKE,
+		LARGE_NUKE,
+	}
+	
+	protected Type mType;
+	public Type RocketType {
+		get { return mType; }
+	}
+	
 	private bool mInitialTouchComplete = false;
 	private GameObject mMyParent;
 	
