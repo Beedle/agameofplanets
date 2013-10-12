@@ -10,6 +10,10 @@ public class Sun : Body {
 	
 	protected override void Update() {
 		base.Update();
+		
+		Vector3 euler = transform.rotation.eulerAngles;
+		euler.y += 360f * Time.deltaTime;
+		transform.rotation = Quaternion.Euler(euler);
 	}
 	
 	protected override void UpdateVelocity() {
