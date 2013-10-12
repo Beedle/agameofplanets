@@ -12,6 +12,7 @@ public class Planet : Body {
 	}
 	
 	protected static List<Planet> PlayerPlanets = new List<Planet>();
+	public GameObject[] moons;
 	
 	public Body mOrbitBody;
 	public float mOrbitDistance;
@@ -73,18 +74,65 @@ public class Planet : Body {
 		Debug.Log (mHealth);
 		
 		
+		
+		if (mHealth <= 80) {
+			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
+				moons[0].SetActive(false);
+			}
+			
+			else {
+				moons[0].SetActive(false);	
+			}	
+			
+		}
+		
+		if (mHealth <= 60) {
+			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
+				moons[1].SetActive(false);
+			}
+			
+			else {
+				moons[1].SetActive(false);	
+			}	
+			
+		}
+		
+		if (mHealth <= 40) {
+			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
+				moons[2].SetActive(false);
+			}
+			
+			else {
+				moons[2].SetActive(false);	
+			}	
+			
+		}
+		
+		if (mHealth <= 20) {
+			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
+				moons[3].SetActive(false);
+			}
+			
+			else {
+				moons[3].SetActive(false);	
+			}	
+			
+		}
+		
 		if (mHealth <= 0) {
 			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
+				moons[4].SetActive(false);
 				Debug.Log("Left got PÅWND!");	
 			}
 			
 			else {
+				moons[4].SetActive(false);
 				Debug.Log("Right got PÅWND!");	
 			}
 			
-			Debug.Log (mHealth);
 			
 		}
+		
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
 				Debug.Log("AI ");	
 				renderer.material.color = Color.red;
