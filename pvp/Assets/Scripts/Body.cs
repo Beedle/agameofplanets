@@ -31,7 +31,7 @@ public class Body : MonoBehaviour {
 	protected virtual void OnTriggerEnter(Collider collider) {
 		Rocket rocket = collider.GetComponent<Rocket>();
 		if (rocket != null && rocket.HasCompletedInitialTouch()) {
-			Debug.LogWarning ("FUCK YEAH");
+			this.OnRocketCollide(rocket);
 			Destroy(rocket.gameObject);
 		}
 	}
@@ -41,6 +41,14 @@ public class Body : MonoBehaviour {
 		if (rocket != null) {
 			rocket.InitialTouchCompleted();	
 		}
+	}
+	
+	
+	/* Callback for registering whenever a rocket
+	 * hits the body. By default, nothing happens.
+	 */
+	protected virtual void OnRocketCollide(Rocket rocket) {
+		// Dooby dooby doo	
 	}
 	
 	
