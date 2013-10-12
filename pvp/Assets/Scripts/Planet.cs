@@ -34,10 +34,12 @@ public class Planet : Body {
 			mAim.LeftKey = KeyCode.Q;
 			mAim.RightKey = KeyCode.W;
 			mAim.FireKey = KeyCode.E;
+			mAim.DefFireKey = KeyCode.R;
 		} else if (mPlayerSide == PlayerSide.PLAYER_RIGHT) {
 			mAim.LeftKey = KeyCode.O;
 			mAim.RightKey = KeyCode.P;
 			mAim.FireKey = KeyCode.I;
+			mAim.DefFireKey = KeyCode.U;
 		}
 	}
 	
