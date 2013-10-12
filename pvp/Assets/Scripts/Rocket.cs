@@ -37,4 +37,8 @@ public class Rocket : Body {
 	public void InitialTouchCompleted() {
 		mInitialTouchComplete = true;	
 	}
+	
+	public void DestroyRocket() {
+		
+	}
 }

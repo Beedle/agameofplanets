@@ -38,7 +38,7 @@ public class Body : MonoBehaviour {
 		Rocket rocket = collider.GetComponent<Rocket>();
 		if (rocket != null && rocket.HasCompletedInitialTouch()) {
 			this.OnRocketCollide(rocket);
-			Destroy(rocket.gameObject);
+			rocket.DestroyRocket();
 		}
 	}
 	
