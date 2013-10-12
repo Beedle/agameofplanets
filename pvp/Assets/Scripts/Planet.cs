@@ -67,8 +67,6 @@ public class Planet : Body {
 	
 	protected override void OnRocketCollide(Rocket rocket) {
 		
-			
-			mHealth -= 10;
 		
 		
 		if (mHealth <= 0) {
