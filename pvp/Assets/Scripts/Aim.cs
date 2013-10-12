@@ -39,13 +39,19 @@ public class Aim : MonoBehaviour {
 		}
 	}
 	
-	
-	private void RotateAlongZ(float degree) {
-		Vector3 euler = transform.rotation.eulerAngles;
-		euler.z += degree * Time.deltaTime;
-		transform.rotation = Quaternion.Euler(euler);
+	public void FireRocketAI( Vector3 pos) {
 		
-		mRotZ = euler.z + 90f;
+		Vector3 position = pos;
+		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
+		
+		Rocket rocket = Instantiate(pfRocket, position, rotation) as Rocket;
+		
+		Body body = transform.parent.gameObject.GetComponent<Planet>();
+		Vector2 velocity = body.Velocity;
+		
+		velocity.x = Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 100f;
+		velocity.y = Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 100f;
+		rocket.SetInitialVelocity(velocity);
 	}
 	
 	private void FireRocket() {
@@ -61,4 +67,13 @@ public class Aim : MonoBehaviour {
 		velocity.y = Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 100f;
 		rocket.SetInitialVelocity(velocity);
 	}
+	
+	private void RotateAlongZ(float degree) {
+		Vector3 euler = transform.rotation.eulerAngles;
+		euler.z += degree * Time.deltaTime;
+		transform.rotation = Quaternion.Euler(euler);
+		
+		mRotZ = euler.z + 90f;
+	}
+	
 }
