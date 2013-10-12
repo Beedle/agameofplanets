@@ -39,6 +39,14 @@ public class Rocket : Body {
 	}
 	
 	public void DestroyRocket() {
+		// Remove particles from gameObject so they can slowly face
+		// by themselves.
+		ParticleEffect part = gameObject.GetComponentInChildren<ParticleEffect>();
+		if (part != null) {
+			part.transform.parent = null;	
+			part.mTimer = 10f;
+		}
 		
+		Destroy(gameObject);
 	}
 }

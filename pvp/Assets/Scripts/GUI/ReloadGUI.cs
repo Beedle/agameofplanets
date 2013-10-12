@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ReloadMinigame : MonoBehaviour {
+public class ReloadGUI : MonoBehaviour {
 	private static char[] sLeftKeys = new char[] {
 		'q', 'w', 'e', 'r', 't',
 		'a', 's', 'd', 'f',
