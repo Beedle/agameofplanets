@@ -12,6 +12,7 @@ public class Planet : Body {
 	}
 	
 	protected static List<Planet> PlayerPlanets = new List<Planet>();
+	public GameObject[] moons;
 	
 	public Body mOrbitBody;
 	public float mOrbitDistance;
@@ -71,7 +72,11 @@ public class Planet : Body {
 		float damage = rocket.Damage();
 		mHealth -= damage;
 		
-		if (mHealth <= 0) {
+		for (int i=4; i>(int)mHealth/20; i--) {
+			moons[i].SetActive(false);	
+		}
+		
+		if (mHealth <= 0f) {
 			Body.gameOver = true;	
 		}
 		
