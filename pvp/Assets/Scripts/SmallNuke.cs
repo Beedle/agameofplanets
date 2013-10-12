@@ -3,8 +3,6 @@ using System.Collections;
 
 public class SmallNuke : Rocket {
 	
-	
-	
 	void Awake() {
 		mType = Rocket.Type.SMALL_NUKE;	
 	}
@@ -13,4 +11,7 @@ public class SmallNuke : Rocket {
 		return 10f;
 	}
 	
+	public override float Damage() {
+		return 5f;	
+	}
 }

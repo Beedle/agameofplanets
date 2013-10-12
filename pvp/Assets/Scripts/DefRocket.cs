@@ -5,7 +5,7 @@ public class DefRocket : Rocket {
 	
 	
 	void Awake() {
-		// mType = ...;	
+		mType = Rocket.Type.DEFENSIVE;	
 	}
 	
 	// Use this for initialization
@@ -38,5 +38,9 @@ public class DefRocket : Rocket {
 	
 	public override float EnergyCost() {
 		return 10f;
+	}
+	
+	public override float Damage() {
+		return 2f;	
 	}
 }
