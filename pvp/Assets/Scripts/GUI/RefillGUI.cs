@@ -11,7 +11,7 @@ public class RefillGUI : PlayerGUIBehaviour {
 	
 	
 	void Start () {
-		AddActionLabel("HOHOHOHOOHOHHOHO", new Vector2(100f, 100f), new Vector2(400f, 400f), 30f, 40, Color.white);
+		
 	}
 	
 	void Update () {
