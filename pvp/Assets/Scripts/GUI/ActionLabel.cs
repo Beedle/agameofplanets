@@ -28,11 +28,12 @@ public class ActionLabel {
 		mTotalTime = time;
 		mTimer = 0f;
 		
-		mStyle = new GUIStyle();
+		SetGUIStyle(new GUIStyle());
 	}
 	
 	public void SetGUIStyle(GUIStyle style) {
 		mStyle = style;
+		mStyle.alignment = TextAnchor.MiddleCenter;
 	}
 	
 	private bool Update () {
@@ -41,8 +42,12 @@ public class ActionLabel {
 			return false;	
 		}
 		
-		mRect.x = mStartPos.x + (mEndPos.x * (mTimer / mTotalTime));
-		mRect.y = mStartPos.y + (mEndPos.y * (mTimer / mTotalTime));
+		mRect.x = mStartPos.x + ((mEndPos.x-mStartPos.x) * (mTimer / mTotalTime));
+		mRect.y = mStartPos.y + ((mEndPos.y-mStartPos.y) * (mTimer / mTotalTime));
+		
+		// Adjust for dimensions
+		mRect.x -= mRect.width/2f;
+		mRect.y -= mRect.height/2f;
 		
 		return true;
 	}

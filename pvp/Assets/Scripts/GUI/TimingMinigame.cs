@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class TimingMinigame : PlayerGUIBehaviour {
+	private const int MAX_CHARS = 5;
+	private const float CHAR_TRAVEL_TIME = 10f;
+	
 	private class CharItem {
 		public float timer;
 		public char  key;
@@ -30,6 +33,7 @@ public class TimingMinigame : PlayerGUIBehaviour {
 	
 	// The expected sequence of characters
 	private List<CharItem> mSequence = new List<CharItem>();
+	private Vector2 mLabelPosition = new Vector2();
 	private float mAddTimer;
 	private int mCombo;
 	
@@ -37,7 +41,7 @@ public class TimingMinigame : PlayerGUIBehaviour {
 	void Start() {
 		AddCharItem();
 		AddCharItem();
-		mSequence[0].timer -= 1f;
+		mSequence[0].timer -= CHAR_TRAVEL_TIME / MAX_CHARS;
 		
 		mRefillGUI = gameObject.GetComponent<RefillGUI>();
 	}
@@ -49,7 +53,7 @@ public class TimingMinigame : PlayerGUIBehaviour {
 		
 		// Add new items
 		mAddTimer += Time.deltaTime;
-		if (mAddTimer >= 1f) {
+		if (mAddTimer >= CHAR_TRAVEL_TIME / MAX_CHARS) {
 			mAddTimer = 0f;
 			AddCharItem();
 		}
@@ -64,6 +68,7 @@ public class TimingMinigame : PlayerGUIBehaviour {
 				float accuracy = Mathf.Abs(next.timer);
 				if (accuracy < 0.3f) {
 					mCombo++;
+					AddComboLabel();
 				} else {
 					mCombo = 0;
 				}
@@ -98,7 +103,7 @@ public class TimingMinigame : PlayerGUIBehaviour {
 		
 		CharItem item = new CharItem();
 		item.key = keySet[idx];
-		item.timer = 5f;
+		item.timer = CHAR_TRAVEL_TIME;
 		mSequence.Add(item);
 	}
 	
@@ -114,6 +119,8 @@ public class TimingMinigame : PlayerGUIBehaviour {
 		rect.height = 120f;
 		GUI.Box(rect, mGuiTexture);
 		
+		mLabelPosition = new Vector2(rect.x + rect.width/2f, rect.y-150f);	
+		
 		// Draw the letters
 		GUIStyle style = new GUIStyle();
 		style.fontSize = 20;
@@ -126,10 +133,15 @@ public class TimingMinigame : PlayerGUIBehaviour {
 			
 			float min = rect.x + rect.width - 15;
 			float max = -165f;
-			txtRect.x = min + (1f - (item.timer / 5f)) * max;
+			txtRect.x = min + (1f - (item.timer / CHAR_TRAVEL_TIME)) * max;
 			txtRect.x -= txtRect.width/2f;
 			
 			GUI.Box(txtRect, ""+item.key, style);
 		}
+	}
+	
+	void AddComboLabel() {
+		Vector2 end = new Vector2(mLabelPosition.x, mLabelPosition.y - 200f);
+		AddActionLabel(mCombo+"Xcombo", mLabelPosition, end, 3f, 35, Color.green);
 	}
 }
