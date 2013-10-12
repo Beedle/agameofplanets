@@ -11,8 +11,7 @@ public class Planet : Body {
 		PLANET_AI,
 	}
 	
-	private bool ShootBackAI;
-	private int NumOfShootFiering;
+	float WaitTime;
 	protected static List<Planet> PlayerPlanets = new List<Planet>();
 	
 	public Body mOrbitBody;
@@ -31,12 +30,11 @@ public class Planet : Body {
 		get { return mHealth; }
 		set { mHealth = value; }
 	}
-	
-	
+		
 	protected override void Start() {
 		base.Start();
 		
-		ShootBackAI = false;
+		WaitTime = Time.time;
 		if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
 			PlayerPlanets.Add(this);
 			mAim.LeftKey = KeyCode.Q;
@@ -56,6 +54,7 @@ public class Planet : Body {
 		}
 	}
 	
+		
 	protected override void UpdateVelocity() {
 		mTimer += Time.deltaTime;
 		
@@ -87,19 +86,17 @@ public class Planet : Body {
 			
 		}
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
-				Debug.Log("AI ");	
-				ShootBackAI = true;
-				NumOfShootFiering += 3;
+			Debug.Log("AI ");	
 			
-				if(NumOfShootFiering > 0 && ShootBackAI) {
-				
-				renderer.material.color = Color.red;
-				
-				Planet target = PlayerPlanets[FindClosestPlayer()];
-				transform.LookAt(target.transform.position);
+			renderer.material.color = Color.red;
+			float start = Time.realtimeSinceStartup;
+  
+			Planet target = PlayerPlanets[FindClosestPlayer()];
+			transform.LookAt(target.transform.position);
 
-				mAim.FireRocket(mAim.pfSmallRocket, 100f);
-			}
+			mAim.FireRocket(mAim.pfSmallRocket, 100f);
+	
+			renderer.material.color = Color.green;
 		}
 	}
 	
