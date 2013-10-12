@@ -13,6 +13,8 @@ public abstract class Rocket : Body {
 		get { return mType; }
 	}
 	
+	public GameObject pfNukesplosion;
+	
 	private bool mInitialTouchComplete = false;
 	private GameObject mMyParent;
 	
@@ -46,7 +48,7 @@ public abstract class Rocket : Body {
 	protected override void OnTriggerEnter(Collider collider) {
 		DefRocket rocket = collider.GetComponent<DefRocket>();
 		if (rocket != null && rocket.HasCompletedInitialTouch()) {
-			this.OnRocketCollide(rocket);
+			rocket.OnRocketCollide(this);
 			rocket.DestroyRocket();
 			this.DestroyRocket();
 		}
@@ -66,13 +68,11 @@ public abstract class Rocket : Body {
 	}
 	
 	public void SetParent(GameObject parent) {
-		
 		mMyParent = parent;	
 	}
 	
 
 	public GameObject GetParent() {
-		
 		return mMyParent;
 	}
 
@@ -85,6 +85,8 @@ public abstract class Rocket : Body {
 			part.transform.parent = null;	
 			part.mTimer = 10f;
 		}
+		
+		Instantiate(pfNukesplosion, transform.position, transform.rotation);
 		
 		Destroy(gameObject);
 	}

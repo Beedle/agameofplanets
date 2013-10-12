@@ -11,8 +11,16 @@ public class Planet : Body {
 		PLANET_AI,
 	}
 	
+<<<<<<< HEAD
 	float WaitTime;
+=======
+	// The dying planet is responsible for triggering
+	// the game over screen.
+	public GameOver pfGameOverScreen;
+	
+>>>>>>> caeaf71f054be9236f26d8e75217827405c0f50d
 	protected static List<Planet> PlayerPlanets = new List<Planet>();
+	public List<GameObject> moons;
 	
 	public Body mOrbitBody;
 	public float mOrbitDistance;
@@ -52,6 +60,14 @@ public class Planet : Body {
 		} else if (mPlayerSide == PlayerSide.PLANET_AI) {	
 			renderer.material.color = Color.green;	
 		}
+		
+		moons = new List<GameObject>();
+		for (int i=0; i<transform.childCount; i++) {
+			GameObject child = transform.GetChild(i).gameObject;
+			if (child.name == "Moon") {
+				moons.Add(child);	
+			}
+		}
 	}
 	
 		
@@ -68,25 +84,25 @@ public class Planet : Body {
 	}
 	
 	protected override void OnRocketCollide(Rocket rocket) {
-		
-		
 		float damage = rocket.Damage();
 		mHealth -= damage;
-		Debug.Log (mHealth);
+		mHealth = -5;
 		
-		
-		if (mHealth <= 0) {
-			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
-				Debug.Log("Left got PÅWND!");	
-			}
-			
-			else {
-				Debug.Log("Right got PÅWND!");	
-			}
-			
-			Debug.Log (mHealth);
-			
+		for (int i=4; i>=(int)mHealth/20; i--) {
+			moons[i].SetActive(false);	
 		}
+		
+		if (mHealth <= 0f) {
+			Body.gameOver = true;
+			GameOver go = Instantiate(pfGameOverScreen) as GameOver;
+			
+			// Flag the winner
+			PlayerSide winner = ((mPlayerSide == PlayerSide.PLAYER_LEFT) 
+									? PlayerSide.PLAYER_RIGHT 
+									: PlayerSide.PLAYER_LEFT);
+			go.SetWinner(winner);
+		}
+		
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
 
 			Debug.Log("AI ");	
