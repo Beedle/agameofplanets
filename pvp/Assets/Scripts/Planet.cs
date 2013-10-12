@@ -11,14 +11,13 @@ public class Planet : Body {
 		PLANET_AI,
 	}
 	
-<<<<<<< HEAD
+
 	float WaitTime;
-=======
+
 	// The dying planet is responsible for triggering
 	// the game over screen.
 	public GameOver pfGameOverScreen;
 	
->>>>>>> caeaf71f054be9236f26d8e75217827405c0f50d
 	protected static List<Planet> PlayerPlanets = new List<Planet>();
 	public List<GameObject> moons;
 	
