@@ -16,11 +16,8 @@ public class Body : MonoBehaviour {
 	}
 	
 	// The mass of the body
-	protected float mMass;
-	public float Mass {
-		get { return mMass; }
-		set { mMass = value; }
-	}
+	public float mMass;
+	
 	
 	protected virtual void Start () {
 		sBodies.Add (this);	
@@ -78,7 +75,7 @@ public class Body : MonoBehaviour {
 				
 				float distance = Vector3.Distance(transform.position, tempBody.transform.position);
 				
-				float pull = mMass * tempBody.Mass / distance * distance;
+				float pull = mMass * tempBody.mMass / distance * distance;
 				
 				acceleration += new Vector2(direction.x * pull, direction.y * pull);
 			}

@@ -5,7 +5,7 @@ public class Rocket : Body {
 	private bool mInitialTouchComplete = false;
 	
 	protected override void Start() {
-		Mass = 1f;	
+		mMass = 1f;	
 	}
 	
 	protected override void Update() {
