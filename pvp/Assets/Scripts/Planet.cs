@@ -24,8 +24,8 @@ public class Planet : Body {
 	
 	public float mTimer = 0f;
 	
-	protected int mHealth = 100;
-	public int health {
+	protected float mHealth = 100;
+	public float health {
 		get { return mHealth; }
 		set { mHealth = value; }
 	}
@@ -67,6 +67,10 @@ public class Planet : Body {
 	
 	protected override void OnRocketCollide(Rocket rocket) {
 		
+		
+		float damage = rocket.Damage();
+		mHealth -= damage;
+		Debug.Log (mHealth);
 		
 		
 		if (mHealth <= 0) {
