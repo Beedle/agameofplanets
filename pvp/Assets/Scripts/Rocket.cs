@@ -6,7 +6,8 @@ public class Rocket : Body {
 	private GameObject mMyParent;
 	
 	protected override void Start() {
-		mMass = 1f;	
+		base.Start();
+		mMass = 1f;
 	}
 	
 	protected override void Update() {
@@ -44,10 +45,17 @@ public class Rocket : Body {
 		mMyParent = parent;	
 	}
 	
+<<<<<<< HEAD
 
 	public GameObject GetParent() {
 		
 		return mMyParent;
+=======
+	public GameObject GetParent() {
+		
+		return mMyParent;
+
+>>>>>>> f0a01725646b579a861148fa103d8054961a5b25
 	}
 
 	public void DestroyRocket() {

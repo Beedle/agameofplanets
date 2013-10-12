@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Aim : MonoBehaviour {
 	public Rocket pfRocket;
+	public DefRocket pfDefRocket;
 	
 	protected KeyCode mLeftKey;
 	public KeyCode LeftKey {
@@ -22,6 +23,12 @@ public class Aim : MonoBehaviour {
 		set { mFireKey = value; }
 	}
 	
+	protected KeyCode mDefFireKey;
+	public KeyCode DefFireKey {
+		get { return mDefFireKey; }
+		set { mDefFireKey = value; }
+	}
+	
 	private float mRotZ = 90f;
 	private RefillGUI mRefillGUI;
 	
@@ -36,6 +43,8 @@ public class Aim : MonoBehaviour {
 			RotateAlongZ(-90f);
 		} else if (Input.GetKeyDown(mFireKey)) {
 			FireRocket();	
+		} else if (Input.GetKeyDown(mDefFireKey)) {
+			FireDefRocket();
 		}
 	}
 	
@@ -63,8 +72,22 @@ public class Aim : MonoBehaviour {
 		Body body = transform.parent.gameObject.GetComponent<Planet>();
 		Vector2 velocity = body.Velocity;
 		
-		velocity.x = Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 100f;
-		velocity.y = Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 100f;
+		velocity.x += Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 100f;
+		velocity.y += Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 100f;
+		rocket.SetInitialVelocity(velocity);
+	}
+	
+	private void FireDefRocket() {
+		Vector3 position = transform.position;
+		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
+		
+		DefRocket rocket = Instantiate(pfDefRocket, position, rotation) as DefRocket;
+		
+		Body body = transform.parent.gameObject.GetComponent<Planet>();
+		Vector2 velocity = body.Velocity;
+		
+		velocity.x += Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 25f;
+		velocity.y += Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 25f;
 		rocket.SetInitialVelocity(velocity);
 	}
 	
