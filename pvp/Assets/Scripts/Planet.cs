@@ -11,6 +11,10 @@ public class Planet : Body {
 		PLANET_AI,
 	}
 	
+	// The dying planet is responsible for triggering
+	// the game over screen.
+	public GameOver pfGameOverScreen;
+	
 	protected static List<Planet> PlayerPlanets = new List<Planet>();
 	public List<GameObject> moons;
 	
@@ -75,17 +79,23 @@ public class Planet : Body {
 	}
 	
 	protected override void OnRocketCollide(Rocket rocket) {
-		
-		
 		float damage = rocket.Damage();
 		mHealth -= damage;
+		mHealth = -5;
 		
 		for (int i=4; i>=(int)mHealth/20; i--) {
 			moons[i].SetActive(false);	
 		}
 		
 		if (mHealth <= 0f) {
-			Body.gameOver = true;	
+			Body.gameOver = true;
+			GameOver go = Instantiate(pfGameOverScreen) as GameOver;
+			
+			// Flag the winner
+			PlayerSide winner = ((mPlayerSide == PlayerSide.PLAYER_LEFT) 
+									? PlayerSide.PLAYER_RIGHT 
+									: PlayerSide.PLAYER_LEFT);
+			go.SetWinner(winner);
 		}
 		
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
