@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TimingMinigame : GUIBehaviour {
+public class TimingMinigame : PlayerGUIBehaviour {
 	private class CharItem {
 		public float timer;
 		public char  key;
