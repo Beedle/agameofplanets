@@ -58,15 +58,35 @@ public class Aim : MonoBehaviour {
 		
 	}
 	
+	public void ShootSmallRocketAI() {
+		
+			
+	}
+	
 	public void FireRocket(Rocket prefab, float speed) {
 		if (!mRefillGUI.FireRocket(prefab)) {
 			return;
 		} 
-		
 		Vector3 position = transform.position;
+		
 		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
 		
 		Rocket rocket = Instantiate(prefab, position, rotation) as Rocket;
+		
+		Body body = transform.parent.gameObject.GetComponent<Planet>();
+		Vector2 velocity = body.Velocity;
+		
+		velocity.x += Mathf.Cos(Mathf.Deg2Rad * mRotZ) * speed;
+		velocity.y += Mathf.Sin(Mathf.Deg2Rad * mRotZ) * speed;
+		rocket.SetInitialVelocity(velocity);
+	}
+	
+	public void FireRocket(float speed, Vector3 pos) {
+				
+		Vector3 position = pos;
+		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
+		
+		Rocket rocket = Instantiate(pfSmallRocket, position, rotation) as Rocket;
 		
 		Body body = transform.parent.gameObject.GetComponent<Planet>();
 		Vector2 velocity = body.Velocity;

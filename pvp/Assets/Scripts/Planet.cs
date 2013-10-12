@@ -11,10 +11,14 @@ public class Planet : Body {
 		PLANET_AI,
 	}
 	
+<<<<<<< HEAD
+	float WaitTime;
+=======
 	// The dying planet is responsible for triggering
 	// the game over screen.
 	public GameOver pfGameOverScreen;
 	
+>>>>>>> caeaf71f054be9236f26d8e75217827405c0f50d
 	protected static List<Planet> PlayerPlanets = new List<Planet>();
 	public List<GameObject> moons;
 	
@@ -34,11 +38,11 @@ public class Planet : Body {
 		get { return mHealth; }
 		set { mHealth = value; }
 	}
-	
-	
+		
 	protected override void Start() {
 		base.Start();
 		
+		WaitTime = Time.time;
 		if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
 			PlayerPlanets.Add(this);
 			mAim.LeftKey = KeyCode.Q;
@@ -66,6 +70,7 @@ public class Planet : Body {
 		}
 	}
 	
+		
 	protected override void UpdateVelocity() {
 		mTimer += Time.deltaTime;
 		
@@ -101,14 +106,18 @@ public class Planet : Body {
 		}
 		
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
-			rocket.DestroyRocket();
-			
+
 			Debug.Log("AI ");	
-			renderer.material.color = Color.red;
 			
+			renderer.material.color = Color.red;
+			float start = Time.realtimeSinceStartup;
+  
 			Planet target = PlayerPlanets[FindClosestPlayer()];
 			transform.LookAt(target.transform.position);
-			mAim.FireRocket(mAim.pfSmallRocket, 100f);
+
+			mAim.FireRocket(100f, transform.position);
+	
+			renderer.material.color = Color.green;
 		}
 	}
 	
