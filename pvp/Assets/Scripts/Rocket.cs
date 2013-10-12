@@ -43,8 +43,12 @@ public abstract class Rocket : Body {
 	public abstract float EnergyCost();
 	
 	
-	protected override void OnTriggerEnter(Collider c) {
-		// DO NOTHING YO
+	protected override void OnTriggerEnter(Collider collider) {
+		DefRocket rocket = collider.GetComponent<DefRocket>();
+		if (rocket != null && rocket.HasCompletedInitialTouch()) {
+			this.OnRocketCollide(rocket);
+			rocket.DestroyRocket();
+		}
 	}
 	
 	protected override void OnTriggerExit(Collider ccc) {
@@ -82,4 +86,6 @@ public abstract class Rocket : Body {
 		
 		Destroy(gameObject);
 	}
+	
+	
 }
