@@ -12,7 +12,7 @@ public class Sun : Body {
 		base.Update();
 		
 		Vector3 euler = transform.rotation.eulerAngles;
-		euler.y += 360f * Time.deltaTime;
+		euler.y += 120f * Time.deltaTime;
 		transform.rotation = Quaternion.Euler(euler);
 	}
 	

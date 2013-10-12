@@ -27,11 +27,18 @@ public class Body : MonoBehaviour {
 		if (!gameOver) {
 			UpdateVelocity();
 			AddVelocityToPosition();
+			rotate();
 		}
 	}
 	
 	void OnDestroy() {
 		sBodies.Remove(this);	
+	}
+	
+	protected void rotate() {
+		Vector3 euler = transform.rotation.eulerAngles;
+		euler.z += 0f * Time.deltaTime;
+		transform.rotation = Quaternion.Euler(euler);
 	}
 	
 	protected virtual void OnTriggerEnter(Collider collider) {

@@ -13,6 +13,8 @@ public abstract class Rocket : Body {
 		get { return mType; }
 	}
 	
+	public GameObject pfNukesplosion;
+	
 	private bool mInitialTouchComplete = false;
 	private GameObject mMyParent;
 	
@@ -69,6 +71,7 @@ public abstract class Rocket : Body {
 		mMyParent = parent;	
 	}
 	
+
 	public GameObject GetParent() {
 		return mMyParent;
 	}
@@ -82,6 +85,8 @@ public abstract class Rocket : Body {
 			part.transform.parent = null;	
 			part.mTimer = 10f;
 		}
+		
+		Instantiate(pfNukesplosion, transform.position, transform.rotation);
 		
 		Destroy(gameObject);
 	}
