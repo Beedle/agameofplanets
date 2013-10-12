@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class Planet : Body {
@@ -19,10 +20,17 @@ public class Planet : Body {
 	
 	public float mTimer = 0f;
 	
+	protected int mHealth = 100;
+	public int health {
+		get { return mHealth; }
+		set { mHealth = value; }
+	}
+	
+	
 	protected override void Start() {
 		base.Start();
 		
-		Mass = 10f;	
+		Mass = 25f;	
 		
 		if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
 			mAim.LeftKey = KeyCode.Q;
@@ -45,5 +53,21 @@ public class Planet : Body {
 		position.y += Mathf.Sin(mTimer * 0.5f) * mOrbitYFactor * mOrbitDistance;
 		
 		transform.position = position;
+	}
+	
+	protected override void OnRocketCollide(Rocket rocket) {
+		mHealth -= 10;
+		
+		if (mHealth <= 0) {
+			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
+				Debug.Log("Left ");	
+			}
+			
+			else {
+				Debug.Log("Right ");	
+			}
+			
+			Debug.Log (mHealth);
+		}
 	}
 }
