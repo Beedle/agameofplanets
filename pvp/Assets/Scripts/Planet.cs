@@ -12,7 +12,7 @@ public class Planet : Body {
 	}
 	
 	protected static List<Planet> PlayerPlanets = new List<Planet>();
-	public GameObject[] moons;
+	public List<GameObject> moons;
 	
 	public Body mOrbitBody;
 	public float mOrbitDistance;
@@ -51,6 +51,14 @@ public class Planet : Body {
 			mAim.FireLargeKey = KeyCode.Y;
 		} else if (mPlayerSide == PlayerSide.PLANET_AI) {	
 			renderer.material.color = Color.green;	
+		}
+		
+		moons = new List<GameObject>();
+		for (int i=0; i<transform.childCount; i++) {
+			GameObject child = transform.GetChild(i).gameObject;
+			if (child.name == "Moon") {
+				moons.Add(child);	
+			}
 		}
 	}
 	
