@@ -70,21 +70,11 @@ public class Planet : Body {
 		
 		float damage = rocket.Damage();
 		mHealth -= damage;
-		Debug.Log (mHealth);
-		
 		
 		if (mHealth <= 0) {
-			if (mPlayerSide == PlayerSide.PLAYER_LEFT) {
-				Debug.Log("Left got PÅWND!");	
-			}
-			
-			else {
-				Debug.Log("Right got PÅWND!");	
-			}
-			
-			Debug.Log (mHealth);
-			
+			Body.gameOver = true;	
 		}
+		
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
 			rocket.DestroyRocket();
 			
