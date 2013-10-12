@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ReloadGUI : PlayerGUIBehaviour {
+public class RefillGUI : PlayerGUIBehaviour {
 	
 	public Texture mGuiTexture;
 	public Planet.PlayerSide mPlayerSide;
