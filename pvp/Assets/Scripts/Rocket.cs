@@ -41,7 +41,7 @@ public abstract class Rocket : Body {
 	
 	// Abstract Rocket Methods
 	public abstract float EnergyCost();
-	
+	public abstract float Damage();
 	
 	protected override void OnTriggerEnter(Collider collider) {
 		DefRocket rocket = collider.GetComponent<DefRocket>();
