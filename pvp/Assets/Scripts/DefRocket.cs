@@ -30,4 +30,8 @@ public class DefRocket : Rocket {
 		
 		mVelocity += acceleration * Time.deltaTime;
 	}
+	
+	public override float EnergyCost() {
+		return 10f;
+	}
 }
