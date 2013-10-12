@@ -23,9 +23,10 @@ public class Aim : MonoBehaviour {
 	}
 	
 	private float mRotZ = 90f;
+	private ReloadMinigame mReload;
 	
 	void Start () {
-		
+		mReload = gameObject.GetComponent<ReloadMinigame>();
 	}
 	
 	void Update () {
@@ -48,6 +49,12 @@ public class Aim : MonoBehaviour {
 	}
 	
 	private void FireRocket() {
+		if (!mReload.CanFire()) {
+			// Play error sound
+			Debug.Log("Unable to fire, yo");
+			return;
+		}
+		
 		Vector3 position = transform.position;
 		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
 		
@@ -59,5 +66,7 @@ public class Aim : MonoBehaviour {
 		velocity.x = Mathf.Cos(Mathf.Deg2Rad * mRotZ) * 100f;
 		velocity.y = Mathf.Sin(Mathf.Deg2Rad * mRotZ) * 100f;
 		rocket.SetInitialVelocity(velocity);
+		
+		mReload.StartMinigame();
 	}
 }
