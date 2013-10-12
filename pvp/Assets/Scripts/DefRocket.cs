@@ -3,6 +3,11 @@ using System.Collections;
 
 public class DefRocket : Rocket {
 	
+	
+	void Awake() {
+		// mType = ...;	
+	}
+	
 	// Use this for initialization
 	protected override void UpdateVelocity() {
 		Vector2 acceleration = new Vector2();
