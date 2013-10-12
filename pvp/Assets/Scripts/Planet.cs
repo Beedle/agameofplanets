@@ -11,6 +11,7 @@ public class Planet : Body {
 	
 	public Body mOrbitBody;
 	public float mOrbitDistance;
+	public float Mass = 25f;
 	
 	public PlayerSide mPlayerSide = PlayerSide.PLAYER_UNDEFINED;
 	public Aim mAim;

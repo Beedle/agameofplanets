@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public class Body : MonoBehaviour {
 	// All Body-objects add themselves to this list
-	protected static List<Body> sBodies = new List<Body>();
+	public static List<Body> sBodies = new List<Body>();
+	
+	// This flag must be toggled when the game is over
+	public static bool gameOver = false;
 	
 	// The velocity of the body.
 	protected Vector2 mVelocity = new Vector2(0f, 0f);
@@ -24,8 +27,14 @@ public class Body : MonoBehaviour {
 	}
 	
 	protected virtual void Update () {
-		UpdateVelocity();
-		AddVelocityToPosition();
+		if (!gameOver) {
+			UpdateVelocity();
+			AddVelocityToPosition();
+		}
+	}
+	
+	void OnDestroy() {
+		sBodies.Remove(this);	
 	}
 	
 	protected virtual void OnTriggerEnter(Collider collider) {
