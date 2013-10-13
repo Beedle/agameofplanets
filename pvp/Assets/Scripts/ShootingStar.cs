@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ShootingStar : MonoBehaviour {
+	private static float MAX_SPEED = 3f;
+	
 	public Vector2 velocity = new Vector2(1f, 1f);
 	
 	[SerializeField]
@@ -16,9 +18,18 @@ public class ShootingStar : MonoBehaviour {
 		mLight = gameObject.GetComponent<Light>();
 		mBaseIntensity = mLight.intensity;
 		
+		AssignSpeed();
+		
+		Vector3 position = new Vector3(0f, 0f, 100f);
+		position.x = Random.Range(-200, 200);
+		position.y = Random.Range(-140, 140);
+		transform.position = position;
+	}
+	
+	void AssignSpeed() {
 		mTimer = Random.Range(0f, 2f);
-			velocity.x = Random.Range(-250, 250);
-			velocity.y = Random.Range(-250, 250);
+		velocity.x = Random.Range(-MAX_SPEED, MAX_SPEED);
+		velocity.y = Random.Range(-MAX_SPEED, MAX_SPEED);	
 	}
 	
 	void Update () {
@@ -29,23 +40,19 @@ public class ShootingStar : MonoBehaviour {
 			
 		if (pos.x < -300f) {
 			pos.x = 290f;
-			velocity.x = Random.Range(-50, -250);
 		} else if (pos.x > 300f) {
 			pos.x = -290f;	
-			velocity.x = Random.Range(50, 250);
-		}
+		} 
 		
 		if (pos.y < -150f) {
 			pos.y = 140f;
-			velocity.y = Random.Range(-50, -250);
 		} else if (pos.y > 150f) {
 			pos.y = -140f;
-			velocity.y = Random.Range(50, 250);
 		}
 		
 		transform.position = pos;
 			
 		mLight.intensity = mFadeCurve.Evaluate(mTimer) * mBaseIntensity;
-		mTimer += Time.deltaTime * Random.Range(0.8f, 1.2f);
+		mTimer += Time.deltaTime * Random.Range(0.3f, 0.5f);
 	}
 }
