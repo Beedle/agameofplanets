@@ -40,6 +40,7 @@ public class Aim : MonoBehaviour {
 	private RefillGUI mRefillGUI;
 	
 	void Start () {
+		audio.playOnAwake = false;
 		mRefillGUI = transform.parent.GetComponent<RefillGUI>();
 	}
 	
@@ -63,6 +64,9 @@ public class Aim : MonoBehaviour {
 			
 	}
 	
+	public AudioClip mSoundLaunch;
+	
+	
 	public void FireRocket(Rocket prefab, float speed) {
 		if (!mRefillGUI.FireRocket(prefab)) {
 			return;
@@ -79,6 +83,7 @@ public class Aim : MonoBehaviour {
 		velocity.x += Mathf.Cos(Mathf.Deg2Rad * mRotZ) * speed;
 		velocity.y += Mathf.Sin(Mathf.Deg2Rad * mRotZ) * speed;
 		rocket.SetInitialVelocity(velocity);
+		audio.PlayOneShot(mSoundLaunch);
 	}
 	
 	public void FireRocket(float speed, Vector3 pos) {
@@ -94,6 +99,7 @@ public class Aim : MonoBehaviour {
 		velocity.x += Mathf.Cos(Mathf.Deg2Rad * mRotZ) * speed;
 		velocity.y += Mathf.Sin(Mathf.Deg2Rad * mRotZ) * speed;
 		rocket.SetInitialVelocity(velocity);
+		audio.PlayOneShot(mSoundLaunch);
 	}
 	
 	private void RotateAlongZ(float degree) {
