@@ -48,7 +48,7 @@ public class Aim : MonoBehaviour {
 			RotateAlongZ(90f);
 		} else if (Input.GetKey(mRightKey)) {
 			RotateAlongZ(-90f);
-		} else if (Input.GetKeyDown(mFireSmallKey)) {
+		} if (Input.GetKeyDown(mFireSmallKey)) {
 			FireRocket(pfSmallRocket, 100f);	
 		} else if (Input.GetKeyDown(mDefFireKey)) {
 			FireRocket(pfDefRocket, 25f);
