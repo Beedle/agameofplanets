@@ -109,11 +109,13 @@ public class Planet : Body {
 			Debug.Log("AI ");	
 			
 			renderer.material.color = Color.red;
-			float start = Time.realtimeSinceStartup;
-  
 			Planet target = PlayerPlanets[FindClosestPlayer()];
+			//WaitTime = 1.0f;
+			//WaitTime -= Time.deltaTime;
+			//if (WaitTime < 1.0f) {
+			//	Destroy(gameObject);
+			//}
 			transform.LookAt(target.transform.position);
-
 			mAim.FireRocket(100f, transform.position);
 	
 			renderer.material.color = Color.green;
