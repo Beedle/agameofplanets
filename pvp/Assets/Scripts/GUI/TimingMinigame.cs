@@ -70,7 +70,7 @@ public class TimingMinigame : PlayerGUIBehaviour {
 			
 			if (Input.GetKeyDown(""+key)) {
 				float accuracy = Mathf.Abs(next.timer);
-				if (accuracy < 0.3f) {
+				if (accuracy < 0.8f) {
 					mCombo++;
 					AddComboLabel();
 				} else {
@@ -92,7 +92,7 @@ public class TimingMinigame : PlayerGUIBehaviour {
 			CharItem item = mSequence[i];
 			item.timer -= Time.deltaTime;
 			
-			if (item.timer < -0.2f) {
+			if (item.timer < -0.6f) {
 				mSequence.RemoveAt(i--);
 				mCombo = 0;
 			}
