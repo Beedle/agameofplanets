@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public class TimingMinigame : PlayerGUIBehaviour {
 	private const int MAX_CHARS = 5;
 	private const float CHAR_TRAVEL_TIME = 10f;
+	private bool OverTenCombo;
+	public AudioClip Guitar;
+	public AudioClip Combo;
 	
 	private class CharItem {
 		public float timer;
@@ -44,6 +47,7 @@ public class TimingMinigame : PlayerGUIBehaviour {
 		mSequence[0].timer -= CHAR_TRAVEL_TIME / MAX_CHARS;
 		
 		mRefillGUI = gameObject.GetComponent<RefillGUI>();
+		audio.loop = false;
 	}
 	
 	void Update () {
@@ -70,6 +74,10 @@ public class TimingMinigame : PlayerGUIBehaviour {
 					mCombo++;
 					AddComboLabel();
 				} else {
+					if(OverTenCombo) {
+						audio.PlayOneShot(Combo);
+						OverTenCombo = false;
+					}
 					mCombo = 0;
 				}
 				
@@ -141,6 +149,10 @@ public class TimingMinigame : PlayerGUIBehaviour {
 	}
 	
 	void AddComboLabel() {
+		if( mCombo != 0 && mCombo % 10 == 0) {
+			OverTenCombo = true;
+			audio.PlayOneShot(Guitar);	
+		}
 		Vector2 end = new Vector2(mLabelPosition.x, mLabelPosition.y - 200f);
 		AddActionLabel(mCombo+"Xcombo", mLabelPosition, end, 3f, 35, Color.green);
 	}
