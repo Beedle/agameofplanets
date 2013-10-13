@@ -90,10 +90,9 @@ public class Planet : Body {
 	protected override void OnRocketCollide(Rocket rocket) {
 		float damage = rocket.Damage();
 		mHealth -= damage;
-		mHealth = 100;
 		
 		
-		for (int i=4; i>=(int)mHealth/20; i--) {
+		for (int i=4; i>=(int)mHealth/20 && mHealth > 0 && mPlayerSide != PlayerSide.PLANET_AI; i--) {
 			moons[i].SetActive(false);	
 		}
 		
