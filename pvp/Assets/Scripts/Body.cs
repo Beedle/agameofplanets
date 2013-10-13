@@ -77,8 +77,10 @@ public class Body : MonoBehaviour {
 		mVelocity += acceleration * Time.deltaTime;
 	}
 	
-	protected Vector2 GetAccelerationOfBody(Vector3 myPosition) {
+	public Vector2 GetAccelerationOfBody(Vector3 myPosition, float myMass=-1f) {
 		Vector2 acceleration = new Vector2();
+		
+		if (myMass < 0f) myMass = mMass;
 		
 		foreach (Body tempBody in sBodies) {
 			if (tempBody != this && tempBody.gameObject.activeSelf) {
@@ -88,7 +90,7 @@ public class Body : MonoBehaviour {
 				
 				float distance = Vector3.Distance(myPosition, tempBody.transform.position);
 				
-				float pull = mMass * tempBody.mMass / distance * distance;
+				float pull = myMass * tempBody.mMass / distance * distance;
 				
 				acceleration += new Vector2(direction.x * pull, direction.y * pull);
 			}

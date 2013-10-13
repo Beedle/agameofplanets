@@ -49,7 +49,7 @@ public class Aim : MonoBehaviour {
 			RotateAlongZ(90f);
 		} else if (Input.GetKey(mRightKey)) {
 			RotateAlongZ(-90f);
-		} else if (Input.GetKeyDown(mFireSmallKey)) {
+		} if (Input.GetKeyDown(mFireSmallKey)) {
 			FireRocket(pfSmallRocket, 100f);	
 		} else if (Input.GetKeyDown(mDefFireKey)) {
 			FireRocket(pfDefRocket, 25f);
@@ -57,11 +57,6 @@ public class Aim : MonoBehaviour {
 			FireRocket(pfLargeRocket, 100f);	
 		}
 		
-	}
-	
-	public void ShootSmallRocketAI() {
-		
-			
 	}
 	
 	public AudioClip mSoundLaunch;
@@ -89,7 +84,7 @@ public class Aim : MonoBehaviour {
 	public void FireRocket(float speed, Vector3 pos) {
 				
 		Vector3 position = pos;
-		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
+		Quaternion rotation = Quaternion.Euler(0f, mRotZ, 0f);
 		
 		Rocket rocket = Instantiate(pfSmallRocket, position, rotation) as Rocket;
 		
