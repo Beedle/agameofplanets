@@ -14,6 +14,40 @@ public class PathGuide : MonoBehaviour {
 	void Start () {
 		mMesh = new Mesh();
 		GetComponent<MeshFilter>().mesh = mMesh;
+		
+		// Prepare dummy vertices
+		for (int i=0; i<128; i++) {
+			mVertices[i] = new Vector3(0f, 0f, 0f);	
+		}
+		
+		// Set the UV coordinates
+		for (int i=0; i<32; i++) {
+			mTexCoord[i*4+0] = new Vector2(0f, 0f);
+			mTexCoord[i*4+1] = new Vector2(0f, 1f);
+			mTexCoord[i*4+2] = new Vector2(1f, 0f);
+			mTexCoord[i*4+3] = new Vector2(1f, 1f);
+		}
+		
+		// Set the normals
+		for (int i=0; i<128; i++) {
+			mNormals[i] = new Vector3(0f, 0f, -1f);	
+		}
+		
+		// Set the indices
+		for (int i=0; i<63; i++) {
+			mIndices[i*6 + 0] = i+0;
+			mIndices[i*6 + 1] = i+1;
+			mIndices[i*6 + 2] = i+2;
+			
+			mIndices[i*6 + 3] = i+2;
+			mIndices[i*6 + 4] = i+1;
+			mIndices[i*6 + 5] = i+3;
+		}
+		
+		mMesh.vertices = mVertices;
+		mMesh.uv = mTexCoord;
+		mMesh.normals = mNormals;
+		mMesh.triangles = mIndices;
 	}
 	
 	void Update () {
@@ -46,34 +80,7 @@ public class PathGuide : MonoBehaviour {
 			position.y += velocity.y * 0.1f;
 		}
 		
-		// Set the UV coordinates
-		for (int i=0; i<32; i++) {
-			mTexCoord[i*4+0] = new Vector2(0f, 0f);
-			mTexCoord[i*4+1] = new Vector2(0f, 1f);
-			mTexCoord[i*4+2] = new Vector2(1f, 0f);
-			mTexCoord[i*4+3] = new Vector2(1f, 1f);
-		}
-		
-		// Set the normals
-		for (int i=0; i<128; i++) {
-			mNormals[i] = new Vector3(0f, 0f, -1f);	
-		}
-		
-		// Set the indices
-		for (int i=0; i<63; i++) {
-			mIndices[i*6 + 0] = i+0;
-			mIndices[i*6 + 1] = i+1;
-			mIndices[i*6 + 2] = i+2;
-			
-			mIndices[i*6 + 3] = i+2;
-			mIndices[i*6 + 4] = i+1;
-			mIndices[i*6 + 5] = i+3;
-		}
-		
 		mMesh.vertices = mVertices;
-		mMesh.uv = mTexCoord;
-		mMesh.normals = mNormals;
-		mMesh.triangles = mIndices;
 	}
 	
 	private Vector2 GetInitialVelocity() {
