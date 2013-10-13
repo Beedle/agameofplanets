@@ -84,7 +84,7 @@ public class Aim : MonoBehaviour {
 	public void FireRocket(float speed, Vector3 pos) {
 				
 		Vector3 position = pos;
-		Quaternion rotation = Quaternion.Euler (0f, mRotZ, 0f);
+		Quaternion rotation = Quaternion.Euler(0f, mRotZ, 0f);
 		
 		Rocket rocket = Instantiate(pfSmallRocket, position, rotation) as Rocket;
 		
