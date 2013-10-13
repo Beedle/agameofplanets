@@ -112,10 +112,7 @@ public class Planet : Body {
 			go.SetWinner(winner);
 		}
 		
-		if (mPlayerSide == PlayerSide.PLANET_AI) {
-
-			Debug.Log("AI ");	
-			
+		if (mPlayerSide == PlayerSide.PLANET_AI) {			
 			renderer.material.color = Color.red;
 			float start = Time.realtimeSinceStartup;
   
