@@ -27,8 +27,13 @@ public class Planet : Body {
 	public PlayerSide mPlayerSide = PlayerSide.PLAYER_UNDEFINED;
 	public Aim mAim;
 	
+	public float speed = 1;
+	
 	public float mOrbitXFactor = 1f;
 	public float mOrbitYFactor = 1f;
+	
+	public float xMod = 0;
+	public float yMod = 0;
 	
 	public float mTimer = 0f;
 	
@@ -76,8 +81,8 @@ public class Planet : Body {
 		Vector3 position = mOrbitBody.transform.position;
 		
 		// Calculate the distance to the parent body
-		position.x += Mathf.Cos(mTimer * 0.5f) * mOrbitXFactor * mOrbitDistance;
-		position.y += Mathf.Sin(mTimer * 0.5f) * mOrbitYFactor * mOrbitDistance;
+		position.x += Mathf.Cos(mTimer * 0.5f * speed) * mOrbitXFactor * mOrbitDistance + xMod;
+		position.y += Mathf.Sin(mTimer * 0.5f * speed) * mOrbitYFactor * mOrbitDistance + yMod;
 		
 		transform.position = position;
 	}

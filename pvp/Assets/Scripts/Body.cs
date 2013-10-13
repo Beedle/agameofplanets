@@ -73,15 +73,20 @@ public class Body : MonoBehaviour {
 	 * by the delta-time.
 	 */
 	protected virtual void UpdateVelocity() {
+		Vector2 acceleration = GetAccelerationOfBody(transform.position);
+		mVelocity += acceleration * Time.deltaTime;
+	}
+	
+	protected Vector2 GetAccelerationOfBody(Vector3 myPosition) {
 		Vector2 acceleration = new Vector2();
 		
 		foreach (Body tempBody in sBodies) {
 			if (tempBody != this && tempBody.gameObject.activeSelf) {
 				
-				Vector3 direction = tempBody.transform.position - transform.position;
+				Vector3 direction = tempBody.transform.position - myPosition;
 				direction.Normalize();
 				
-				float distance = Vector3.Distance(transform.position, tempBody.transform.position);
+				float distance = Vector3.Distance(myPosition, tempBody.transform.position);
 				
 				float pull = mMass * tempBody.mMass / distance * distance;
 				
@@ -89,7 +94,7 @@ public class Body : MonoBehaviour {
 			}
 		}
 		
-		mVelocity += acceleration * Time.deltaTime;
+		return acceleration;
 	}
 	
 	protected void AddVelocityToPosition() {
