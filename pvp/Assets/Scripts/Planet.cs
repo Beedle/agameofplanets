@@ -26,6 +26,7 @@ public class Planet : Body {
 	
 	public PlayerSide mPlayerSide = PlayerSide.PLAYER_UNDEFINED;
 	public Aim mAim;
+	public AudioClip mSoundBoom;
 	
 	public float speed = 1;
 	
@@ -62,7 +63,7 @@ public class Planet : Body {
 			mAim.FireSmallKey = KeyCode.U;
 			mAim.FireLargeKey = KeyCode.Y;
 		} else if (mPlayerSide == PlayerSide.PLANET_AI) {	
-			renderer.material.color = Color.green;	
+				
 		}
 		
 		moons = new List<GameObject>();
@@ -90,13 +91,16 @@ public class Planet : Body {
 	protected override void OnRocketCollide(Rocket rocket) {
 		float damage = rocket.Damage();
 		mHealth -= damage;
+
+		audio.PlayOneShot(mSoundBoom);
+
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
 			mHealth = 100;	
 		}
-		
+
 		if (mPlayerSide == PlayerSide.PLAYER_LEFT || mPlayerSide == PlayerSide.PLAYER_RIGHT) {
 			for (int i=4; i>=(int)mHealth/20 && mHealth > 0 && mPlayerSide != PlayerSide.PLANET_AI; i--) {
-			moons[i].SetActive(false);	
+				moons[i].SetActive(false);	
 			}
 		}
 		
@@ -114,17 +118,14 @@ public class Planet : Body {
 		
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
 
-			Debug.Log("AI ");	
-			
-			renderer.material.color = Color.red;
-			float start = Time.realtimeSinceStartup;
-  
+						
+		
 			Planet target = PlayerPlanets[FindClosestPlayer()];
+		
 			transform.LookAt(target.transform.position);
-
 			mAim.FireRocket(100f, transform.position);
 	
-			renderer.material.color = Color.green;
+		
 		}
 	}
 	
