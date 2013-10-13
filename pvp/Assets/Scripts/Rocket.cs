@@ -87,7 +87,7 @@ public abstract class Rocket : Body {
 		}
 		
 		Instantiate(pfNukesplosion, transform.position, transform.rotation);
-		Camera.Singleton.Shake(10f);
+		Camera.Singleton.Shake(5f);
 		
 		Destroy(gameObject);
 	}
