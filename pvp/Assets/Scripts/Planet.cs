@@ -52,16 +52,16 @@ public class Planet : Body {
 			PlayerPlanets.Add(this);
 			mAim.LeftKey = KeyCode.Q;
 			mAim.RightKey = KeyCode.W;
-			mAim.DefFireKey = KeyCode.E;
-			mAim.FireSmallKey = KeyCode.R;
-			mAim.FireLargeKey = KeyCode.T;
+			mAim.DefFireKey = KeyCode.Alpha1;
+			mAim.FireSmallKey = KeyCode.Alpha2;
+			mAim.FireLargeKey = KeyCode.Alpha3;
 		} else if (mPlayerSide == PlayerSide.PLAYER_RIGHT) {
 			PlayerPlanets.Add(this);
 			mAim.LeftKey = KeyCode.O;
 			mAim.RightKey = KeyCode.P;
-			mAim.DefFireKey = KeyCode.I;
-			mAim.FireSmallKey = KeyCode.U;
-			mAim.FireLargeKey = KeyCode.Y;
+			mAim.DefFireKey = KeyCode.Alpha8;
+			mAim.FireSmallKey = KeyCode.Alpha9;
+			mAim.FireLargeKey = KeyCode.Alpha0;
 		} else if (mPlayerSide == PlayerSide.PLANET_AI) {	
 				
 		}
@@ -118,8 +118,6 @@ public class Planet : Body {
 		
 			transform.LookAt(target.transform.position);
 			mAim.FireRocket(100f, transform.position);
-	
-		
 		}
 	}
 	
