@@ -90,15 +90,12 @@ public class Planet : Body {
 	
 	protected override void OnRocketCollide(Rocket rocket) {
 		float damage = rocket.Damage();
-		mHealth -= damage;
+		
 
 		audio.PlayOneShot(mSoundBoom);
 
-		if (mPlayerSide == PlayerSide.PLANET_AI) {
-			mHealth = 100;	
-		}
-
 		if (mPlayerSide == PlayerSide.PLAYER_LEFT || mPlayerSide == PlayerSide.PLAYER_RIGHT) {
+			mHealth -= damage;
 			for (int i=4; i>=(int)mHealth/20 && mHealth > 0 && mPlayerSide != PlayerSide.PLANET_AI; i--) {
 				moons[i].SetActive(false);	
 			}
