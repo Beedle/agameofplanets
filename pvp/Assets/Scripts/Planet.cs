@@ -114,9 +114,6 @@ public class Planet : Body {
 		}
 		
 		if (mPlayerSide == PlayerSide.PLANET_AI) {
-
-						
-		
 			Planet target = PlayerPlanets[FindClosestPlayer()];
 		
 			transform.LookAt(target.transform.position);
