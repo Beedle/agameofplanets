@@ -17,6 +17,8 @@ public class ShootingStar : MonoBehaviour {
 		mBaseIntensity = mLight.intensity;
 		
 		mTimer = Random.Range(0f, 2f);
+			velocity.x = Random.Range(-250, 250);
+			velocity.y = Random.Range(-250, 250);
 	}
 	
 	void Update () {
@@ -27,14 +29,18 @@ public class ShootingStar : MonoBehaviour {
 			
 		if (pos.x < -300f) {
 			pos.x = 290f;
+			velocity.x = Random.Range(-50, -250);
 		} else if (pos.x > 300f) {
 			pos.x = -290f;	
+			velocity.x = Random.Range(50, 250);
 		}
 		
 		if (pos.y < -150f) {
-			pos.y = 140f;	
+			pos.y = 140f;
+			velocity.y = Random.Range(-50, -250);
 		} else if (pos.y > 150f) {
 			pos.y = -140f;
+			velocity.y = Random.Range(50, 250);
 		}
 		
 		transform.position = pos;
