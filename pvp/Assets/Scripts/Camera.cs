@@ -5,16 +5,16 @@ using System.Collections.Generic;
 
 public class Camera : MonoBehaviour {
 	// Everything is allowed in crunch and prototype.
-	private static Camera _camera;
+	private static Camera _singleton;
 	public static Camera Singleton {
 		get { return _singleton; }	
 	}
 	
 	// Shakessss
 	private struct ShakeDef {
-		public List<Vector2> positions = new List<Vector2>();
-		public List<float> timers = new List<float>();
-		public List<float> totalTime = new List<float>();
+		public List<Vector2> positions;
+		public List<float> timers;
+		public List<float> totalTime;
 	}
 	
 	// ((((shaekkekekekekke))))
@@ -22,7 +22,7 @@ public class Camera : MonoBehaviour {
 	
 	
 	void Awake() {
-		_camera = this;	
+		_singleton = this;	
 	}
 	
 	void Start () {
@@ -53,6 +53,9 @@ public class Camera : MonoBehaviour {
 	
 	public void Shake(float time, float magnitude) {
 		ShakeDef def = new ShakeDef();
+		def.positions = new List<Vector2>();
+		def.timers = new List<float>();
+		def.totalTime = new List<float>();
 		
 		for (int i=0; i<9; i++) {
 			float angle = Random.Range(0f, 6.24f);
@@ -62,11 +65,11 @@ public class Camera : MonoBehaviour {
 			
 			def.positions.Add(dir);
 			def.timers.Add(0f);
-			def.totalTimes.Add(Random.Range(0.6f, 1.4f) * time/10f);
+			def.totalTime.Add(Random.Range(0.6f, 1.4f) * time/10f);
 		}
 		
-		def.positions.Add(new Vector2(0f, 0f, 0f));
+		def.positions.Add(new Vector2(0f, 0f));
 		def.timers.Add(0f);
-		def.totalTimes.Add(Time/10f);
+		def.totalTime.Add(time/10f);
 	}
 }
