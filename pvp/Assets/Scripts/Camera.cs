@@ -15,17 +15,32 @@ public class Camera : MonoBehaviour {
 	private float mTimer;
 	
 	private bool mDoShake;
+	
+	private static Vector3 sIntroStart = new Vector3(0f, 240f, -50f);
+	private static Vector3 sIntroDest = new Vector3(0f, 0f, -50f);
+	
+	[SerializeField]
+	private AnimationCurve mCurve;
+	private static float INTRO_TIME = 2.5f;
+	private float mIntroTimer = 0f;
 
 	void Awake() {
 		_singleton = this;	
 	}
 	
 	void Start () {
-		
+		transform.position = new Vector3(0f, 240f, -50f);
 	}
 	
 	void Update () {
-		if (mDoShake) {
+		if (mIntroTimer < INTRO_TIME) {
+			float f = mIntroTimer / INTRO_TIME;
+			float p = mCurve.Evaluate(f);
+			
+			transform.position = sIntroDest + p * sIntroStart;
+			mIntroTimer += Time.deltaTime;
+			
+		} else if (mDoShake) {
 			mTimer += Time.deltaTime;
 			
 			Vector3 pos = transform.position;
