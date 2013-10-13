@@ -15,13 +15,11 @@ public class TimingMinigame : PlayerGUIBehaviour {
 	}
 	
 	private static char[] sLeftKeys = new char[] {
-		'a', 's', 'd', 'f',
-		'z', 'x', 'c', 'v',
+		'a', 's', 'd'
 	};
 	
 	private static char[] sRightKeys = new char[] {
-		'g', 'h', 'j', 'k', 'l',
-		'b', 'n', 'm'
+		'j', 'k', 'l'
 	};
 	
 	
